@@ -169,14 +169,14 @@ def tensor_map(
         in_strides: Strides,
     ) -> None:
         # TODO: Implement for Task 3.1.
-        out_index: Index = np.zeros(MAX_DIMS, np.int16)
-        in_index: Index = np.zeros(MAX_DIMS, np.int16)
         for i in prange(len(out)):
+            out_index = np.zeros(len(out_shape), dtype=np.int32)
             to_index(i, out_shape, out_index)
+            in_index = np.zeros(len(in_shape), dtype=np.int32)
             broadcast_index(out_index, out_shape, in_shape, in_index)
-            j = index_to_position(out_index, out_strides)
-            o = index_to_position(in_index, in_strides)
-            out[j] = fn(in_storage[o])
+            out_pos = index_to_position(out_index, out_strides)
+            in_pos = index_to_position(in_index, in_strides)
+            out[out_pos] = fn(in_storage[in_pos])
 
     return njit(_map, parallel=True)
 
@@ -283,15 +283,17 @@ def tensor_reduce(
         reduce_dim: int,
     ) -> None:
         # TODO: Implement for Task 3.1.
-        out_index: Index = np.zeros(MAX_DIMS, np.int32)
-        reduce_size = a_shape[reduce_dim]
         for i in prange(len(out)):
-          to_index(i, out_shape, out_index)
-          o = index_to_position(out_index, out_strides)
-          for s in prange(reduce_size):
-              out_index[reduce_dim] = s
-              j = index_to_position(out_index, a_strides)
-              out[o] = fn(out[o], a_storage[j])
+            out_index = np.zeros(len(out_shape), dtype=np.int32)
+            to_index(i, out_shape, out_index)
+            out_pos = index_to_position(out_index, out_strides)
+            reduce_val = out[out_pos]
+            for j in range(a_shape[reduce_dim]):
+                a_index = np.copy(out_index)
+                a_index[reduce_dim] = j
+                a_pos = index_to_position(a_index, a_strides)
+                reduce_val = fn(reduce_val, a_storage[a_pos])
+            out[out_pos] = reduce_val
 
     return njit(_reduce, parallel=True)
 

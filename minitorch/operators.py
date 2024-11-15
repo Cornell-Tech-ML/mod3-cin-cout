@@ -108,7 +108,7 @@ def neg(x: float) -> float:
         The negation of x.
 
     """
-    return float(-x)
+    return -x
 
 
 # Checks if one number is less than another
@@ -128,7 +128,7 @@ def lt(x: float, y: float) -> float:
         1.0 if x is less than y, 0.0 otherwise.
 
     """
-    return float(x < y)
+    return 1.0 if x < y else 0.0
 
 
 # Checks if two numbers are equal
@@ -148,7 +148,7 @@ def eq(x: float, y: float) -> float:
         1.0 if x is equal to y, 0.0 otherwise.
 
     """
-    return float(x == y)
+    return 1.0 if x==y else 0.0
 
 
 # Returns the larger of two numbers
@@ -227,7 +227,7 @@ def relu(x: float) -> float:
         The ReLU of x (max(0, x)).
 
     """
-    return float(max(x, 0))
+    return x if x>0 else 0.0
 
 
 ESP = 1e-6
@@ -344,7 +344,7 @@ def relu_back(x: float, d: float) -> float:
         Gradient of ReLU(x) with respect to x.
 
     """
-    return d if x > 0 else 0
+    return d if x > 0 else 0.0
 
 
 # ## Task 0.3
