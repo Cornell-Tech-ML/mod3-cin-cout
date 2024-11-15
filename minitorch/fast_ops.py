@@ -225,17 +225,21 @@ def tensor_zip(
         b_strides: Strides,
     ) -> None:
         # TODO: Implement for Task 3.1.
-        out_index: Index = np.zeros(MAX_DIMS, np.int32)
-        a_index: Index = np.zeros(MAX_DIMS, np.int32)
-        b_index: Index = np.zeros(MAX_DIMS, np.int32)
         for i in prange(len(out)):
+            out_index = np.zeros(len(out_shape), dtype=np.int32)
+            a_index = np.zeros(len(a_shape), dtype=np.int32)
+            b_index = np.zeros(len(b_shape), dtype=np.int32)
+
             to_index(i, out_shape, out_index)
-            j = index_to_position(out_index, out_strides)
+            out_pos = index_to_position(out_index, out_strides)
+
             broadcast_index(out_index, out_shape, a_shape, a_index)
-            k = index_to_position(a_index, a_strides)
+            a_pos = index_to_position(a_index, a_strides)
+
             broadcast_index(out_index, out_shape, b_shape, b_index)
-            l = index_to_position(b_index, b_strides)
-            out[j] = fn(a_storage[k], b_storage[l])
+            b_pos = index_to_position(b_index, b_strides)
+
+            out[out_pos] = fn(a_storage[a_pos], b_storage[b_pos])
 
     return njit(_zip, parallel=True)
 
