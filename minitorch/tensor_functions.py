@@ -262,9 +262,9 @@ class Sigmoid(Function):
             The sigmoid-transformed tensor.
 
         """
-        sigmoid_tensor = t1.f.sigmoid_map(t1)
-        ctx.save_for_backward(sigmoid_tensor)
-        return sigmoid_tensor
+        out = t1.f.sigmoid_map(t1)
+        ctx.save_for_backward(out)
+        return out
 
     @staticmethod
     def backward(ctx: Context, grad_output: Tensor) -> Tensor:
@@ -283,14 +283,8 @@ class Sigmoid(Function):
             Gradient of the input tensor.
 
         """
-        (sigmoid_tensor,) = ctx.saved_values
-        # d_output * sigmoid_value * (1 - sigmoid_value)
-        neg_sigmoid_tensor = sigmoid_tensor.f.neg_map(sigmoid_tensor)
-        one_tensor = minitorch.Tensor.make([1.0] * 1, (1,), backend=grad_output.backend)
-        one_minus_sigmoid = sigmoid_tensor.f.add_zip(one_tensor, neg_sigmoid_tensor)
-        return grad_output.f.mul_zip(
-            grad_output, (grad_output.f.mul_zip(sigmoid_tensor, one_minus_sigmoid))
-        )
+        sigma: Tensor = ctx.saved_values[0]
+        return sigma * (-sigma + 1.0) * grad_output
 
 
 class ReLU(Function):
@@ -354,7 +348,8 @@ class Log(Function):
 
         """
         ctx.save_for_backward(t1)
-        return t1.f.log_map(t1)
+        out = t1.f.log_map(t1)
+        return out
 
     @staticmethod
     def backward(ctx: Context, grad_output: Tensor) -> Tensor:
@@ -440,7 +435,7 @@ class Sum(Function):
             The sum of elements along the specified dimension.
 
         """
-        ctx.save_for_backward(t1)
+        ctx.save_for_backward(t1.shape, dim)
         return t1.f.add_reduce(t1, int(dim.item()))
 
     @staticmethod
@@ -460,8 +455,8 @@ class Sum(Function):
             Gradient of the input tensor and a constant.
 
         """
-        (t1,) = ctx.saved_values
-        return grad_output.f.id_map(grad_output, t1), 0.0
+        (t1_shape, dim) = ctx.saved_values
+        return grad_output, 0.0
 
 
 class LT(Function):
@@ -484,6 +479,7 @@ class LT(Function):
             A tensor containing the element-wise result of t1 < t2.
 
         """
+        ctx.save_for_backward(t1.shape, t2.shape)
         return t1.f.lt_zip(t1, t2)
 
     @staticmethod
@@ -503,10 +499,8 @@ class LT(Function):
             Zero gradients.
 
         """
-        zero_tensor_t1 = grad_output.zeros(grad_output.shape)
-        zero_tensor_t2 = grad_output.zeros(grad_output.shape)
-
-        return zero_tensor_t1, zero_tensor_t2
+        t1_shape, t2_shape = ctx.saved_values
+        return zeros(t1_shape), zeros(t2_shape)
 
 
 class EQ(Function):
@@ -529,6 +523,7 @@ class EQ(Function):
             A tensor containing the element-wise result of t1 == t2.
 
         """
+        ctx.save_for_backward(t1.shape, t2.shape)
         return t1.f.eq_zip(t1, t2)
 
     @staticmethod
@@ -548,10 +543,8 @@ class EQ(Function):
             Zero gradients.
 
         """
-        zero_tensor_t1 = grad_output.zeros(grad_output.shape)
-        zero_tensor_t2 = grad_output.zeros(grad_output.shape)
-
-        return zero_tensor_t1, zero_tensor_t2
+        t1_shape, t2_shape = ctx.saved_values
+        return zeros(t1_shape), zeros(t2_shape)
 
 
 class IsClose(Function):
@@ -598,8 +591,7 @@ class Permute(Function):
 
         """
         ctx.save_for_backward(order)
-        order_list = order.to_numpy().astype(int).tolist()
-        return t1._new(t1._tensor.permute(*order_list))
+        return t1._new(t1._tensor.permute(*[int(order[i]) for i in range(order.size)]))
 
     @staticmethod
     def backward(ctx: Context, grad_output: Tensor) -> Tuple[Tensor, float]:
@@ -618,17 +610,14 @@ class Permute(Function):
             Permuted gradient of the input tensor and a constant.
 
         """
-        # Retrieve the saved permutation order from the forward pass
-        (order,) = ctx.saved_values
-        order_list = order.to_numpy().astype(int).tolist()
-
-        # Compute the inverse of the permutation
-        inverse_order = [0] * len(order_list)
-        for i, idx in enumerate(order_list):
-            inverse_order[idx] = i
-
-        # Apply the inverse permutation to the gradient output
-        return grad_output._new(grad_output._tensor.permute(*inverse_order)), 0.0
+        order: Tensor = ctx.saved_values[0]
+        order2: List[int] = [
+            a[0]
+            for a in sorted(
+                enumerate([order[i] for i in range(order.size)]), key=lambda a: a[1]
+            )
+        ]
+        return grad_output._new(grad_output._tensor.permute(*order2)), 0.0
 
 
 class View(Function):

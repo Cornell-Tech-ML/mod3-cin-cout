@@ -7,6 +7,7 @@ from typing_extensions import Protocol
 
 from . import operators
 from .tensor_data import (
+    MAX_DIMS,
     broadcast_index,
     index_to_position,
     shape_broadcast,
@@ -15,7 +16,7 @@ from .tensor_data import (
 
 if TYPE_CHECKING:
     from .tensor import Tensor
-    from .tensor_data import Shape, Storage, Strides
+    from .tensor_data import Index, Shape, Storage, Strides
 
 
 class MapProto(Protocol):
@@ -289,13 +290,14 @@ def tensor_map(
         in_strides: Strides,
     ) -> None:
         # TODO: Implement for Task 2.3.
+        out_index: Index = np.zeros(MAX_DIMS, np.int32)
+        in_index: Index = np.zeros(MAX_DIMS, np.int32)
         for i in range(len(out)):
-            out_index = np.zeros(len(out_shape), dtype=np.int32)
             to_index(i, out_shape, out_index)
-            in_index = np.zeros(len(in_shape), dtype=np.int32)
             broadcast_index(out_index, out_shape, in_shape, in_index)
-            in_pos = index_to_position(in_index, in_strides)
-            out[i] = fn(in_storage[in_pos])
+            j = index_to_position(out_index, out_strides)
+            o = index_to_position(in_index, in_strides)
+            out[j] = fn(in_storage[o])
 
     return _map
 
@@ -342,17 +344,17 @@ def tensor_zip(
         b_strides: Strides,
     ) -> None:
         # TODO: Implement for Task 2.3.
+        out_index: Index = np.zeros(MAX_DIMS, np.int32)
+        a_index: Index = np.zeros(MAX_DIMS, np.int32)
+        b_index: Index = np.zeros(MAX_DIMS, np.int32)
         for i in range(len(out)):
-            out_index = np.zeros(len(out_shape), dtype=np.int32)
             to_index(i, out_shape, out_index)
-            a_index = np.zeros(len(a_shape), dtype=np.int32)
-            b_index = np.zeros(len(b_shape), dtype=np.int32)
+            j = index_to_position(out_index, out_strides)
             broadcast_index(out_index, out_shape, a_shape, a_index)
+            k = index_to_position(a_index, a_strides)
             broadcast_index(out_index, out_shape, b_shape, b_index)
-            out[i] = fn(
-                a_storage[index_to_position(a_index, a_strides)],
-                b_storage[index_to_position(b_index, b_strides)],
-            )
+            l = index_to_position(b_index, b_strides)
+            out[j] = fn(a_storage[k], b_storage[l])
 
     return _zip
 
@@ -385,23 +387,15 @@ def tensor_reduce(
         reduce_dim: int,
     ) -> None:
         # TODO: Implement for Task 2.3.
+        out_index: Index = np.zeros(MAX_DIMS, np.int32)
+        reduce_size = a_shape[reduce_dim]
         for i in range(len(out)):
-            out_index = np.zeros(len(out_shape), dtype=np.int32)
             to_index(i, out_shape, out_index)
-
-            # Initialize the accumulator to zero for each output element
-            acc = out[i]
-
-            # Iterate over the dimension we are reducing
-            for j in range(a_shape[reduce_dim]):
-                # Copy the out_index to generate a_index
-                a_index = np.copy(out_index)
-                a_index[reduce_dim] = j  # Set the reducing dimension index
-                # Update the accumulator using fn
-                acc = fn(acc, a_storage[index_to_position(a_index, a_strides)])
-
-            # Store the result in the output storage
-            out[i] = acc
+            o = index_to_position(out_index, out_strides)
+            for s in range(reduce_size):
+                out_index[reduce_dim] = s
+                j = index_to_position(out_index, a_strides)
+                out[o] = fn(out[o], a_storage[j])
 
     return _reduce
 

@@ -32,16 +32,16 @@ class Module:
     def train(self) -> None:
         """Set the mode of this module and all descendent modules to `train`."""
         # TODO: Implement for Task 0.4.
-        self.training = True
         for module in self.modules():
             module.train()
+        self.training = True
 
     def eval(self) -> None:
         """Set the mode of this module and all descendent modules to `eval`."""
         # TODO: Implement for Task 0.4.
-        self.training = False
         for module in self.modules():
             module.eval()
+        self.training = False
 
     def named_parameters(self) -> Sequence[Tuple[str, Parameter]]:
         """Collect all the parameters of this module and its descendents.
@@ -52,15 +52,15 @@ class Module:
 
         """
         # TODO: Implement for Task 0.4.
-        params = []
-        # Add current module's parameters
-        for name, param in self._parameters.items():
-            params.append((name, param))
-        # Recursively add child module's parameters
-        for name, module in self._modules.items():
-            for child_name, param in module.named_parameters():
-                params.append((f"{name}.{child_name}", param))
-        return params
+        parameters = {}
+        for k, v in self._parameters.items():
+            parameters[k] = v
+
+        # Recurse down to children submodules
+        for mod_name, m in self._modules.items():
+            for k, v in m.named_parameters():
+                parameters[f"{mod_name}.{k}"] = v
+        return list(parameters.items())
 
     def parameters(self) -> Sequence[Parameter]:
         """Enumerate over all the parameters of this module and its descendents."""

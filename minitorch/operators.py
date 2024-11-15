@@ -412,12 +412,12 @@ def zipWith(fn: Callable[[float, float], float]) -> Callable[[Iterable[float], I
         List of output values.
 
     """
-    def _zipWith(ls1 : Iterable[float], ls2 : Iterable[float]) -> Iterable[float]:
+    def _zipWith(ls1: Iterable[float], ls2: Iterable[float]) -> Iterable[float]:
         ret = []
-        for x,y in zip(ls1, ls2):
-            ret.append(fn(x,y))
+        for x, y in zip(ls1, ls2):
+            ret.append(fn(x, y))
         return ret
-        
+
     return _zipWith
 
 

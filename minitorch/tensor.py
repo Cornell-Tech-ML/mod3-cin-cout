@@ -386,12 +386,10 @@ class Tensor:
         return Add.apply(self, self._ensure_tensor(b))
 
     def __sub__(self, b: TensorLike) -> Tensor:
-        b = self._ensure_tensor(b)
-        return Add.apply(self, b.f.neg_map(b))
+        return Add.apply(self, -self._ensure_tensor(b))
 
     def __mul__(self, b: TensorLike) -> Tensor:
-        b = self._ensure_tensor(b)
-        return Mul.apply(self, b)
+        return Mul.apply(self, self._ensure_tensor(b))
 
     def __lt__(self, b: TensorLike) -> Tensor:
         return LT.apply(self, self._ensure_tensor(b))
@@ -406,10 +404,10 @@ class Tensor:
         return Neg.apply(self)
 
     def __radd__(self, b: TensorLike) -> Tensor:
-        return Add.apply(self, self._ensure_tensor(b))
+        return self + b
 
     def __rmul__(self, b: TensorLike) -> Tensor:
-        return Mul.apply(self, self._ensure_tensor(b))
+        return self * b
 
     def __hash__(self):
         return hash(self.unique_id)
@@ -433,7 +431,7 @@ class Tensor:
         else:
             return All.apply(self, self._ensure_tensor(dim))
 
-    def is_close(self, b: TensorLike) -> Tensor:
+    def is_close(self, y: Tensor) -> Tensor:
         """Check if the elements of this tensor are close to the elements of another tensor.
 
         Parameters
@@ -447,7 +445,7 @@ class Tensor:
             A tensor indicating element-wise closeness.
 
         """
-        return IsClose.apply(self, self._ensure_tensor(b))
+        return IsClose.apply(self, y)
 
     def sigmoid(self) -> Tensor:
         """Apply the sigmoid activation function to the tensor.
@@ -508,7 +506,7 @@ class Tensor:
 
         """
         if dim is None:
-            return Sum.apply(self.view(self.size), self._ensure_tensor(0))
+            return Sum.apply(self.contiguous().view(self.size), self._ensure_tensor(0))
         else:
             return Sum.apply(self, self._ensure_tensor(dim))
 
@@ -526,16 +524,10 @@ class Tensor:
             Tensor with the mean of elements.
 
         """
-        if dim is None:
-            return Mul.apply(
-                Sum.apply(self.view(self.size), self._ensure_tensor(0)),
-                self._ensure_tensor(1 / self._tensor.size),
-            )
+        if dim is not None:
+            return self.sum(dim) / self.shape[dim]
         else:
-            return Mul.apply(
-                Sum.apply(self, self._ensure_tensor(dim)),
-                self._ensure_tensor(1 / self._tensor.shape[dim]),
-            )
+            return self.sum(dim) / self.size
 
     def permute(self, *order: int) -> Tensor:
         """Permute the dimensions of the tensor according to a specified order.
@@ -551,7 +543,7 @@ class Tensor:
             Tensor with permuted dimensions.
 
         """
-        return Permute.apply(self, tensor(order, backend=self.backend))
+        return Permute.apply(self, tensor(list(order)))
 
     def view(self, *shape: int) -> Tensor:
         """Reshape the tensor into a specified shape without changing its data.
@@ -567,7 +559,7 @@ class Tensor:
             Reshaped tensor.
 
         """
-        return View.apply(self.contiguous(), tensor(shape, backend=self.backend))
+        return View.apply(self, tensor(list(shape)))
 
     def zero_grad_(self) -> None:
         """Reset the gradient for this tensor to zero."""

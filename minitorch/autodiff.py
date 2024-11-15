@@ -125,31 +125,21 @@ def topological_sort(variable: Variable) -> Iterable[Variable]:
 
     """
     # TODO: Implement for Task 1.4.
-    visited = set()
-    sorted_variables: List[Variable] = []
+    order: List[Variable] = []
+    seen = set()
 
-    def dfs(v: Variable) -> None:
-        """Performs depth-first search for topological sort.
-
-        Parameters
-        ----------
-        v : Variable
-            The current variable in the graph.
-
-        """
-        if v in visited or v.is_constant():
+    def visit(var: Variable) -> None:
+        if var.unique_id in seen or var.is_constant():
             return
-        visited.add(v)
-        # Recurse on parents
-        for parent in v.parents:
-            dfs(parent)
-        # Append the current variable
-        sorted_variables.append(v)
+        if not var.is_leaf():
+            for m in var.parents:
+                if not m.is_constant():
+                    visit(m)
+        seen.add(var.unique_id)
+        order.insert(0, var)
 
-    # Start DFS from the right-most variable
-    dfs(variable)
-
-    return reversed(sorted_variables)  # Reverse for topological order
+    visit(variable)
+    return order
 
 
 def backpropagate(variable: Variable, deriv: Any) -> None:
@@ -165,21 +155,19 @@ def backpropagate(variable: Variable, deriv: Any) -> None:
 
     """
     # TODO: Implement for Task 1.4.
-    sorted_variables = topological_sort(variable)
-
-    derivatives = {variable: deriv}
-
-    for var in sorted_variables:
+    queue = topological_sort(variable)
+    derivatives = {}
+    derivatives[variable.unique_id] = deriv
+    for var in queue:
+        deriv = derivatives[var.unique_id]
         if var.is_leaf():
-            var.accumulate_derivative(derivatives[var])
+            var.accumulate_derivative(deriv)
         else:
-            d_output = derivatives[var]
-
-            for parent, local_derivative in var.chain_rule(d_output):
-                if parent in derivatives:
-                    derivatives[parent] += local_derivative
-                else:
-                    derivatives[parent] = local_derivative
+            for v, d in var.chain_rule(deriv):
+                if v.is_constant():
+                    continue
+                derivatives.setdefault(v.unique_id, 0.0)
+                derivatives[v.unique_id] = derivatives[v.unique_id] + d
 
 
 @dataclass
