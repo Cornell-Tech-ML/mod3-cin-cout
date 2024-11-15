@@ -230,16 +230,19 @@ def tensor_zip(
             a_index = np.zeros(len(a_shape), dtype=np.int32)
             b_index = np.zeros(len(b_shape), dtype=np.int32)
 
+            # get out index
             to_index(i, out_shape, out_index)
-            out_pos = index_to_position(out_index, out_strides)
+            # get the position
+            #out_pos = index_to_position(out_index, out_strides)
 
+            # out idx's broascast back to a
             broadcast_index(out_index, out_shape, a_shape, a_index)
             a_pos = index_to_position(a_index, a_strides)
 
             broadcast_index(out_index, out_shape, b_shape, b_index)
             b_pos = index_to_position(b_index, b_strides)
 
-            out[out_pos] = fn(a_storage[a_pos], b_storage[b_pos])
+            out[i] = fn(a_storage[a_pos], b_storage[b_pos])
 
     return njit(_zip, parallel=True)
 
