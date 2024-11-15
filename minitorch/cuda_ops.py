@@ -28,7 +28,7 @@ FakeCUDAKernel = Any
 
 Fn = TypeVar("Fn")
 
-
+# change to a cuda function
 def device_jit(fn: Fn, **kwargs) -> Fn:
     return _jit(device=True, **kwargs)(fn)  # type: ignore
 
@@ -59,7 +59,10 @@ class CudaOps(TensorOps):
 
             # Instantiate and run the cuda kernel.
             threadsperblock = THREADS_PER_BLOCK
+            # decide how many block in a grid
+            # + THREADS_PER_BLOCK - 1 cuz we need to round up to the nearest integer
             blockspergrid = (out.size + THREADS_PER_BLOCK - 1) // THREADS_PER_BLOCK
+            # 1D block with 1D thread
             f[blockspergrid, threadsperblock](*out.tuple(), out.size, *a.tuple())  # type: ignore
             return out
 
@@ -91,6 +94,7 @@ class CudaOps(TensorOps):
 
         def ret(a: Tensor, dim: int) -> Tensor:
             out_shape = list(a.shape)
+            # it's for cuda reduce so out shape will be block size. It's more efficent for cuda to do reduce
             out_shape[dim] = (a.shape[dim] - 1) // 1024 + 1
             out_a = a.zeros(tuple(out_shape))
 
@@ -170,11 +174,22 @@ def tensor_map(
         in_shape: Shape,
         in_strides: Strides,
     ) -> None:
+        # to store the tmp index
         out_index = cuda.local.array(MAX_DIMS, numba.int32)
+        # to store the tmp index
         in_index = cuda.local.array(MAX_DIMS, numba.int32)
+        # cuda.blockDim.x = threadperblock
         i = cuda.blockIdx.x * cuda.blockDim.x + cuda.threadIdx.x
         # TODO: Implement for Task 3.3.
-        raise NotImplementedError("Need to implement for Task 3.3")
+        # Guard
+        if i < out_size:
+            # change i to the outindex, for example 0 -> (0,0,0) 
+            to_index(i, out_shape, out_index)
+            # reverse the broadcast index to orginal index
+            broadcast_index(out_index, out_shape, in_shape, in_index)
+            in_pos = index_to_position(in_index, in_strides)
+            # map the input position to out put
+            out[i] = fn(in_storage[in_pos])
 
     return cuda.jit()(_map)  # type: ignore
 
@@ -217,15 +232,27 @@ def tensor_zip(
         i = cuda.blockIdx.x * cuda.blockDim.x + cuda.threadIdx.x
 
         # TODO: Implement for Task 3.3.
-        raise NotImplementedError("Need to implement for Task 3.3")
-
+        # Guard
+        if i < out_size:
+            # change i to the outindex, for example 0 -> (0,0,0) 
+            to_index(i, out_shape, out_index)
+            # reverse the broadcast index to corresponding index a
+            broadcast_index(out_index, out_shape, a_shape, a_index)
+            # reverse the broadcast index to corresponding index in b
+            broadcast_index(out_index, out_shape, b_shape, b_index)
+            out[i] = fn(
+                # get the position in a and b from their index
+                a_storage[index_to_position(a_index, a_strides)],
+                b_storage[index_to_position(b_index, b_strides)]
+            )
+    # compile low level function to cuda kernel function
     return cuda.jit()(_zip)  # type: ignore
 
 
 def _sum_practice(out: Storage, a: Storage, size: int) -> None:
-    """This is a practice sum kernel to prepare for reduce.
+    r"""Practice sum kernel to prepare for reduce.
 
-    Given an array of length $n$ and out of size $n // \text{blockDIM}$
+    Given an array of length n and out of size n // blockDIM
     it should sum up each blockDim values into an out cell.
 
     $[a_1, a_2, ..., a_{100}]$
@@ -250,8 +277,30 @@ def _sum_practice(out: Storage, a: Storage, size: int) -> None:
     pos = cuda.threadIdx.x
 
     # TODO: Implement for Task 3.3.
-    raise NotImplementedError("Need to implement for Task 3.3")
+    # evert block has its own share memeory. 
+    # for example, a = 0~64. 0~31 will be put into block0's cache and 32~64 will be put into block1' cache 
+    cache[pos] = a[i] if i < size else 0.0
+    # wait till every thread in "a block" finish assignment
+    cuda.syncthreads()
 
+    # Perform reduction in shared memory
+    stride = 1
+    while stride < BLOCK_DIM:
+        # for sum the cache in every block 
+        # for example 
+        # first loop : [1, 2, 3, 4, 5, 6, 7, 8]
+        # second loop : [1+2, 2, 3+4, 4, 5+6, 6, 7+8, 8]
+        # last loop : [10+26, 2, 7, 4, 26, 6, 15, 8]
+        # cache[0] will be the sum of the first block
+        if pos % (2 * stride) == 0:
+            cache[pos] += cache[pos + stride]
+        stride *= 2
+        # wait every thread in a block finish their first loop
+        cuda.syncthreads()
+
+    # Write result from each block to global memory
+    if pos == 0:
+        out[cuda.blockIdx.x] = cache[0]
 
 jit_sum_practice = cuda.jit()(_sum_practice)
 
@@ -294,6 +343,10 @@ def tensor_reduce(
         reduce_dim: int,
         reduce_value: float,
     ) -> None:
+        # blocks represnt the position in output tensor
+        # threads deal with each value in "dim" in a (input tenosr)
+
+        # how many thread in a block
         BLOCK_DIM = 1024
         cache = cuda.shared.array(BLOCK_DIM, numba.float64)
         out_index = cuda.local.array(MAX_DIMS, numba.int32)
@@ -301,13 +354,113 @@ def tensor_reduce(
         pos = cuda.threadIdx.x
 
         # TODO: Implement for Task 3.3.
-        raise NotImplementedError("Need to implement for Task 3.3")
+        # im still debugging
+        a_index = cuda.local.array(MAX_DIMS, numba.int32)
+        if out_pos < out_size:
+            # compute out_index from out_pos
+            to_index(out_pos, out_shape, out_index)
 
+            # get the block index along reduce_dim
+            reduce_block_idx = out_index[reduce_dim]
+
+            # compute reduce_start and reduce_end
+            reduce_start = reduce_block_idx * BLOCK_DIM
+            reduce_end = min(reduce_start + BLOCK_DIM, a_shape[reduce_dim])
+            # compute the number of active threads for this block
+            active_threads = reduce_end - reduce_start
+
+            # a_index will be same as out index, except for reduce dim
+            for d in range(len(a_shape)):
+                a_index[d] = out_index[d]
+
+            # defualt value will be different depend on mul reduce or add reduce
+            acc = reduce_value
+
+            # active thread
+            if pos < active_threads:
+                # idx = the position in reduce dim this thread dealing w
+                idx = reduce_start + pos
+                a_index[reduce_dim] = idx
+
+                # get the value of this index
+                a_pos = index_to_position(a_index, a_strides)
+                acc = a_storage[a_pos]
+
+            else:
+                # For threads beyond active_threads, set acc to default value
+                acc = reduce_value
+
+            # sharing cache store the result of each thread in current block
+            # ex reduce dim 1 (0,0) (0,1) ... (0, 1024) will store in cache [0] [1] [2]
+            cache[pos] = acc
+            # wait every thread 
+            cuda.syncthreads()
+
+            # Perform reduction in shared memory, using binary reduction
+            stride = 1
+            while stride < BLOCK_DIM:
+            # for sum the cache in every block 
+            # for example 
+            # first loop : [1, 2, 3, 4, 5, 6, 7, 8]
+            # second loop : [1+2, 2, 3+4, 4, 5+6, 6, 7+8, 8]
+            # last loop : [10+26, 2, 7, 4, 26, 6, 15, 8]
+            # cache[0] will be the sum of the first block = the value after reduction
+                index = 2 * stride * pos
+                if index + stride < BLOCK_DIM and (index + stride) < active_threads:
+                    cache[index] = fn(cache[index], cache[index + stride])
+                cuda.syncthreads()
+                stride *= 2
+
+            # store the value in out position when threadid = 0 in each block 
+            if pos == 0:
+                out_pos = index_to_position(out_index, out_strides)
+                out[out_pos] = cache[0]
+        '''
+        # Guard 
+        if out_pos < out_size:
+            # get the output index from output position
+            to_index(out_pos, out_shape, out_index)
+            # start value will be different depend on mul reduce or add reduce
+            acc = reduce_value
+            # a_shape[reduce_dim] = original size of this dim
+            for j in range(a_shape[reduce_dim]):
+                a_index = cuda.local.array(MAX_DIMS, numba.int32)
+                
+                # get a_index 
+                # a_index will be same as out index, except for reduce dim
+                for k in range(len(out_index)):
+                    a_index[k] = out_index[k]
+                a_index[reduce_dim] = j
+
+                acc = fn(acc, a_storage[index_to_position(a_index, a_strides)])
+            # Load each thread's result into shared memory
+            cache[pos] = acc 
+            cuda.syncthreads()
+
+            # Parallel reduction within the block
+            stride = 1
+            while stride < BLOCK_DIM:
+                # for sum the cache in every block 
+                # for example 
+                # first loop : [1, 2, 3, 4, 5, 6, 7, 8]
+                # second loop : [1+2, 2, 3+4, 4, 5+6, 6, 7+8, 8]
+                # last loop : [10+26, 2, 7, 4, 26, 6, 15, 8]
+                # cache[0] will be the sum of the first block
+                if pos % (2 * stride) == 0 and (pos + stride) < BLOCK_DIM:
+                    cache[pos] = fn(cache[pos], cache[pos + stride])
+                stride *= 2
+                
+                cuda.syncthreads()
+
+            # Write the result of the reduction to the output
+            if pos == 0:
+                out[out_pos] = cache[0]
+            '''
     return jit(_reduce)  # type: ignore
 
 
 def _mm_practice(out: Storage, a: Storage, b: Storage, size: int) -> None:
-    """This is a practice square MM kernel to prepare for matmul.
+    r"""Practice square MM kernel to prepare for matmul.
 
     Given a storage `out` and two storage `a` and `b`. Where we know
     both are shape [size, size] with strides [size, 1].
@@ -339,8 +492,22 @@ def _mm_practice(out: Storage, a: Storage, b: Storage, size: int) -> None:
     """
     BLOCK_DIM = 32
     # TODO: Implement for Task 3.3.
-    raise NotImplementedError("Need to implement for Task 3.3")
+    a_shared = cuda.shared.array((BLOCK_DIM, BLOCK_DIM), numba.float64)
+    b_shared = cuda.shared.array((BLOCK_DIM, BLOCK_DIM), numba.float64)
+    
+    row, col = cuda.threadIdx.y, cuda.threadIdx.x
+    sum = 0.0
 
+    for k in range(size // BLOCK_DIM):
+        a_shared[row, col] = a[row * size + (col + k * BLOCK_DIM)]
+        b_shared[row, col] = b[(row + k * BLOCK_DIM) * size + col]
+        cuda.syncthreads()
+
+        for j in range(BLOCK_DIM):
+            sum += a_shared[row, j] * b_shared[j, col]
+        cuda.syncthreads()
+
+    out[row * size + col] = sum
 
 jit_mm_practice = jit(_mm_practice)
 
@@ -408,7 +575,27 @@ def _tensor_matrix_multiply(
     #    b) Copy into shared memory for b matrix
     #    c) Compute the dot produce for position c[i, j]
     # TODO: Implement for Task 3.4.
-    raise NotImplementedError("Need to implement for Task 3.4")
+    sum = 0.0
+
+    for k in range((a_shape[-1] + BLOCK_DIM - 1) // BLOCK_DIM):
+        if i < a_shape[-2] and k * BLOCK_DIM + cuda.threadIdx.y < a_shape[-1]:
+            a_shared[cuda.threadIdx.x, cuda.threadIdx.y] = a_storage[i * a_strides[-2] + (k * BLOCK_DIM + cuda.threadIdx.y) * a_strides[-1]]
+        else:
+            a_shared[cuda.threadIdx.x, cuda.threadIdx.y] = 0.0
+
+        if k * BLOCK_DIM + cuda.threadIdx.x < b_shape[-2] and j < b_shape[-1]:
+            b_shared[cuda.threadIdx.x, cuda.threadIdx.y] = b_storage[(k * BLOCK_DIM + cuda.threadIdx.x) * b_strides[-2] + j * b_strides[-1]]
+        else:
+            b_shared[cuda.threadIdx.x, cuda.threadIdx.y] = 0.0
+
+        cuda.syncthreads()
+
+        for n in range(BLOCK_DIM):
+            sum += a_shared[cuda.threadIdx.x, n] * b_shared[n, cuda.threadIdx.y]
+        cuda.syncthreads()
+
+    if i < out_shape[-2] and j < out_shape[-1]:
+        out[i * out_strides[-2] + j * out_strides[-1]] = sum
 
 
 tensor_matrix_multiply = jit(_tensor_matrix_multiply)
