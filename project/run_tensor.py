@@ -22,9 +22,9 @@ class Network(minitorch.Module):
         self.layer3 = Linear(hidden_layers, 1)
 
     def forward(self, x):
-        middle = self.layer1.forward(x).relu()
-        middle2 = self.layer2.forward(middle).relu()
-        out = self.layer3.forward(middle2).sigmoid()
+        h = self.layer1.forward(x).relu()
+        h = self.layer2.forward(h).relu()
+        return self.layer3.forward(h).sigmoid()
         return out
 
 
@@ -40,18 +40,11 @@ class Linear(minitorch.Module):
     def forward(self, inputs):
         # Perform linear transformation: weights * inputs + bias
 
-        inputs = inputs.view(inputs.shape[0], inputs.shape[1], 1)
-
-        weights = self.weights.value
-        bias = self.bias.value
-
-        multiplied = inputs * weights
-        reduced_sum = multiplied.sum(1)
-
-        bias = bias.view(1, bias.shape[0])
-        output = reduced_sum + bias
-
-        return output.view(output.shape[0], output.shape[2])
+        batch, in_size = x.shape
+        return (
+            self.weights.value.view(1, in_size, self.out_size)
+            * x.view(batch, in_size, 1)
+        ).sum(1).view(batch, self.out_size) + self.bias.value.view(self.out_size)
 
 
 def default_log_fn(epoch, total_loss, correct, losses):

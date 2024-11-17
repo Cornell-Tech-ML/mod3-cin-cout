@@ -155,14 +155,8 @@ class Scalar:
         assert h.ctx is not None
 
         # TODO: Implement for Task 1.3.
-        local_derivatives = h.last_fn._backward(h.ctx, d_output)
-
-        result: Sequence[Tuple[Variable, Any]] = []
-        for inp, local_derivative in zip(h.inputs, local_derivatives):
-            if not inp.is_constant():
-                result.append((inp, local_derivative))
-
-        return result
+        x = h.last_fn._backward(h.ctx, d_output)
+        return list(zip(h.inputs, x))
 
     def backward(self, d_output: Optional[float] = None) -> None:
         """Calls autodiff to fill in the derivatives for the history of this object.
@@ -183,7 +177,7 @@ class Scalar:
         return Add.apply(self, b)
 
     def __sub__(self, b: ScalarLike) -> Scalar:
-        return Add.apply(self, Neg.apply(b))
+        return Add.apply(self, -b)
 
     def __neg__(self) -> Scalar:
         return Neg.apply(self)
@@ -191,8 +185,12 @@ class Scalar:
     def __lt__(self, b: ScalarLike) -> Scalar:
         return LT.apply(self, b)
 
+    def __gt__(self, b: ScalarLike) -> Scalar:
+        return LT.apply(b, self)
+
+
     def __eq__(self, b: ScalarLike) -> Scalar:
-        return EQ.apply(self, b)
+        return EQ.apply(b, self)
 
     def exp(self) -> Scalar:
         """Compute the exponential of the scalar value.

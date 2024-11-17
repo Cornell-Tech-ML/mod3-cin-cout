@@ -191,7 +191,8 @@ class Mul(ScalarFunction):
 
         """
         ctx.save_for_backward(a, b)
-        return operators.mul(a, b)
+        c = a * b
+        return c
 
     @staticmethod
     def backward(ctx: Context, d_output: float) -> Tuple[float, float]:
@@ -211,7 +212,7 @@ class Mul(ScalarFunction):
 
         """
         a, b = ctx.saved_values
-        return d_output * b, d_output * a
+        return b * d_output, a * d_output
 
 
 class Inv(ScalarFunction):
@@ -278,7 +279,7 @@ class Neg(ScalarFunction):
             The negated value (-a).
 
         """
-        return operators.neg(a)
+        return -a
 
     @staticmethod
     def backward(ctx: Context, d_output: float) -> float:
@@ -341,8 +342,8 @@ class Sigmoid(ScalarFunction):
             The gradient with respect to a.
 
         """
-        (sigmoid_value,) = ctx.saved_values
-        return d_output * sigmoid_value * (1 - sigmoid_value)
+        sigmoid_value: float = ctx.saved_values[0]
+        return sigmoid_value * (1 - sigmoid_value) * d_output 
 
 
 class ReLU(ScalarFunction):
@@ -430,7 +431,7 @@ class Exp(ScalarFunction):
             The gradient with respect to a.
 
         """
-        (exp_value,) = ctx.saved_values
+        exp_value:float = ctx.saved_values[0]
         return d_output * exp_value
 
 
@@ -456,7 +457,7 @@ class LT(ScalarFunction):
             1.0 if a < b, 0.0 otherwise.
 
         """
-        return operators.lt(a, b)
+        return 1.0 if a < b else 0.0
 
     @staticmethod
     def backward(ctx: Context, d_output: float) -> Tuple[float, float]:
@@ -500,7 +501,7 @@ class EQ(ScalarFunction):
             1.0 if a == b, 0.0 otherwise.
 
         """
-        return operators.eq(a, b)
+        return 1.0 if a==b else 0.0
 
     @staticmethod
     def backward(ctx: Context, d_output: float) -> Tuple[float, float]:
