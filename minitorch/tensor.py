@@ -436,7 +436,7 @@ class Tensor:
 
         Parameters
         ----------
-        b : TensorLike
+        y : TensorLike
             The tensor to compare with.
 
         Returns

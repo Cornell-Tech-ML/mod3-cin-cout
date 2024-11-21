@@ -1,0 +1,216 @@
+check for added large files..............................................[42mPassed[m
+check for case conflicts.................................................[42mPassed[m
+check docstring is first.................................................[42mPassed[m
+check for merge conflicts................................................[42mPassed[m
+check for broken symlinks............................(no files to check)[46;30mSkipped[m
+check toml...............................................................[42mPassed[m
+debug statements (python)................................................[42mPassed[m
+mixed line ending........................................................[42mPassed[m
+fix requirements.txt.....................................................[42mPassed[m
+trim trailing whitespace.................................................[42mPassed[m
+ruff.....................................................................[41mFailed[m
+[2m- hook id: ruff[m
+[2m- exit code: 1[m
+
+[1;33mwarning[0m[1m:[0m [1mThe top-level linter settings are deprecated in favour of their counterparts in the `lint` section. Please update the following options in `pyproject.toml`:
+  - 'fixable' -> 'lint.fixable'
+  - 'ignore' -> 'lint.ignore'
+  - 'select' -> 'lint.select'
+  - 'unfixable' -> 'lint.unfixable'
+  - 'extend-per-file-ignores' -> 'lint.extend-per-file-ignores'[0m
+[1;33mwarning[0m[1m:[0m [1m`one-blank-line-before-class` (D203) and `no-blank-line-before-class` (D211) are incompatible. Ignoring `one-blank-line-before-class`.[0m
+[1mminitorch/__init__.py[0m[36m:[0m1[36m:[0m1[36m:[0m [1;31mD104[0m Missing docstring in public package
+[1mminitorch/cuda_ops.py[0m[36m:[0m33[36m:[0m5[36m:[0m [1;31mD103[0m Missing docstring in public function
+[1;38;5;12m   |[0m
+[1;38;5;12m32 |[0m # change to a cuda function
+[1;38;5;12m33 |[0m def device_jit(fn: Fn, **kwargs) -> Fn:
+[1;38;5;12m   |[0m[1;38;5;9m     ^^^^^^^^^^[0m [1;38;5;9mD103[0m
+[1;38;5;12m34 |[0m     return _jit(device=True, **kwargs)(fn)  # type: ignore
+[1;38;5;12m   |[0m
+
+[1mminitorch/cuda_ops.py[0m[36m:[0m33[36m:[0m24[36m:[0m [1;31mANN003[0m Missing type annotation for `**kwargs`
+[1;38;5;12m   |[0m
+[1;38;5;12m32 |[0m # change to a cuda function
+[1;38;5;12m33 |[0m def device_jit(fn: Fn, **kwargs) -> Fn:
+[1;38;5;12m   |[0m[1;38;5;9m                        ^^^^^^^^[0m [1;38;5;9mANN003[0m
+[1;38;5;12m34 |[0m     return _jit(device=True, **kwargs)(fn)  # type: ignore
+[1;38;5;12m   |[0m
+
+[1mminitorch/cuda_ops.py[0m[36m:[0m37[36m:[0m5[36m:[0m [1;31mD103[0m Missing docstring in public function
+[1;38;5;12m   |[0m
+[1;38;5;12m37 |[0m def jit(fn, **kwargs) -> FakeCUDAKernel:
+[1;38;5;12m   |[0m[1;38;5;9m     ^^^[0m [1;38;5;9mD103[0m
+[1;38;5;12m38 |[0m     return _jit(**kwargs)(fn)  # type: ignore
+[1;38;5;12m   |[0m
+
+[1mminitorch/cuda_ops.py[0m[36m:[0m37[36m:[0m9[36m:[0m [1;31mANN001[0m Missing type annotation for function argument `fn`
+[1;38;5;12m   |[0m
+[1;38;5;12m37 |[0m def jit(fn, **kwargs) -> FakeCUDAKernel:
+[1;38;5;12m   |[0m[1;38;5;9m         ^^[0m [1;38;5;9mANN001[0m
+[1;38;5;12m38 |[0m     return _jit(**kwargs)(fn)  # type: ignore
+[1;38;5;12m   |[0m
+
+[1mminitorch/cuda_ops.py[0m[36m:[0m37[36m:[0m13[36m:[0m [1;31mANN003[0m Missing type annotation for `**kwargs`
+[1;38;5;12m   |[0m
+[1;38;5;12m37 |[0m def jit(fn, **kwargs) -> FakeCUDAKernel:
+[1;38;5;12m   |[0m[1;38;5;9m             ^^^^^^^^[0m [1;38;5;9mANN003[0m
+[1;38;5;12m38 |[0m     return _jit(**kwargs)(fn)  # type: ignore
+[1;38;5;12m   |[0m
+
+[1mminitorch/cuda_ops.py[0m[36m:[0m73[36m:[0m9[36m:[0m [1;31mD102[0m Missing docstring in public method
+[1;38;5;12m   |[0m
+[1;38;5;12m72 |[0m     @staticmethod
+[1;38;5;12m73 |[0m     def zip(fn: Callable[[float, float], float]) -> Callable[[Tensor, Tensor], Tensor]:
+[1;38;5;12m   |[0m[1;38;5;9m         ^^^[0m [1;38;5;9mD102[0m
+[1;38;5;12m74 |[0m         cufn: Callable[[float, float], float] = device_jit(fn)
+[1;38;5;12m75 |[0m         f = tensor_zip(cufn)
+[1;38;5;12m   |[0m
+
+[1mminitorch/cuda_ops.py[0m[36m:[0m90[36m:[0m9[36m:[0m [1;31mD102[0m Missing docstring in public method
+[1;38;5;12m   |[0m
+[1;38;5;12m89 |[0m     @staticmethod
+[1;38;5;12m90 |[0m     def reduce(
+[1;38;5;12m   |[0m[1;38;5;9m         ^^^^^^[0m [1;38;5;9mD102[0m
+[1;38;5;12m91 |[0m         fn: Callable[[float, float], float], start: float = 0.0
+[1;38;5;12m92 |[0m     ) -> Callable[[Tensor, int], Tensor]:
+[1;38;5;12m   |[0m
+
+[1mminitorch/cuda_ops.py[0m[36m:[0m113[36m:[0m9[36m:[0m [1;31mD102[0m Missing docstring in public method
+[1;38;5;12m    |[0m
+[1;38;5;12m112 |[0m     @staticmethod
+[1;38;5;12m113 |[0m     def matrix_multiply(a: Tensor, b: Tensor) -> Tensor:
+[1;38;5;12m    |[0m[1;38;5;9m         ^^^^^^^^^^^^^^^[0m [1;38;5;9mD102[0m
+[1;38;5;12m114 |[0m         # Make these always be a 3 dimensional multiply
+[1;38;5;12m115 |[0m         both_2d = 0
+[1;38;5;12m    |[0m
+
+[1mminitorch/cuda_ops.py[0m[36m:[0m311[36m:[0m5[36m:[0m [1;31mD103[0m Missing docstring in public function
+[1;38;5;12m    |[0m
+[1;38;5;12m311 |[0m def sum_practice(a: Tensor) -> TensorData:
+[1;38;5;12m    |[0m[1;38;5;9m     ^^^^^^^^^^^^[0m [1;38;5;9mD103[0m
+[1;38;5;12m312 |[0m     (size,) = a.shape
+[1;38;5;12m313 |[0m     threadsperblock = THREADS_PER_BLOCK
+[1;38;5;12m    |[0m
+
+[1mminitorch/cuda_ops.py[0m[36m:[0m512[36m:[0m5[36m:[0m [1;31mD103[0m Missing docstring in public function
+[1;38;5;12m    |[0m
+[1;38;5;12m512 |[0m def mm_practice(a: Tensor, b: Tensor) -> TensorData:
+[1;38;5;12m    |[0m[1;38;5;9m     ^^^^^^^^^^^[0m [1;38;5;9mD103[0m
+[1;38;5;12m513 |[0m     (size, _) = a.shape
+[1;38;5;12m514 |[0m     threadsperblock = (THREADS_PER_BLOCK, THREADS_PER_BLOCK)
+[1;38;5;12m    |[0m
+
+[1mminitorch/fast_ops.py[0m[36m:[0m32[36m:[0m5[36m:[0m [1;31mD103[0m Missing docstring in public function
+[1;38;5;12m   |[0m
+[1;38;5;12m32 |[0m def njit(fn: Fn, **kwargs: Any) -> Fn:
+[1;38;5;12m   |[0m[1;38;5;9m     ^^^^[0m [1;38;5;9mD103[0m
+[1;38;5;12m33 |[0m     return _njit(inline="always", **kwargs)(fn)  # type: ignore
+[1;38;5;12m   |[0m
+
+[1mminitorch/tensor.py[0m[36m:[0m434[36m:[0m9[36m:[0m [1;31mD417[0m Missing argument description in the docstring for `is_close`: `y`
+[1;38;5;12m    |[0m
+[1;38;5;12m432 |[0m             return All.apply(self, self._ensure_tensor(dim))
+[1;38;5;12m433 |[0m 
+[1;38;5;12m434 |[0m     def is_close(self, y: Tensor) -> Tensor:
+[1;38;5;12m    |[0m[1;38;5;9m         ^^^^^^^^[0m [1;38;5;9mD417[0m
+[1;38;5;12m435 |[0m         """Check if the elements of this tensor are close to the elements of another tensor.
+[1;38;5;12m    |[0m
+
+Found 13 errors.
+
+ruff-format..............................................................[42mPassed[m
+pyright..................................................................[41mFailed[m
+[2m- hook id: pyright[m
+[2m- exit code: 1[m
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 1344, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/http/client.py", line 1336, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/http/client.py", line 1382, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/http/client.py", line 1331, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/http/client.py", line 1091, in _send_output
+    self.send(msg)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/http/client.py", line 1035, in send
+    self.connect()
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/http/client.py", line 1477, in connect
+    self.sock = self._context.wrap_socket(self.sock,
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/ssl.py", line 455, in wrap_socket
+    return self.sslsocket_class._create(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/ssl.py", line 1041, in _create
+    self.do_handshake()
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/ssl.py", line 1319, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/kadelin/.cache/pre-commit/repodm22vb3b/py_env-python3.12/lib/python3.12/site-packages/nodeenv.py", line 1548, in <module>
+    main()
+  File "/Users/kadelin/.cache/pre-commit/repodm22vb3b/py_env-python3.12/lib/python3.12/site-packages/nodeenv.py", line 1119, in main
+    args.node = get_last_stable_node_version()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kadelin/.cache/pre-commit/repodm22vb3b/py_env-python3.12/lib/python3.12/site-packages/nodeenv.py", line 1052, in get_last_stable_node_version
+    return _get_versions_json()[0]['version'].lstrip('v')
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kadelin/.cache/pre-commit/repodm22vb3b/py_env-python3.12/lib/python3.12/site-packages/nodeenv.py", line 1028, in _get_versions_json
+    response = urlopen('%s/index.json' % src_base_url)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kadelin/.cache/pre-commit/repodm22vb3b/py_env-python3.12/lib/python3.12/site-packages/nodeenv.py", line 652, in urlopen
+    return urllib2.urlopen(req)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 215, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 515, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 532, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 1392, in https_open
+    return self.do_open(http.client.HTTPSConnection, req,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/urllib/request.py", line 1347, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)>
+Traceback (most recent call last):
+  File "/Users/kadelin/.cache/pre-commit/repodm22vb3b/py_env-python3.12/bin/pyright", line 8, in <module>
+    sys.exit(entrypoint())
+             ^^^^^^^^^^^^
+  File "/Users/kadelin/.cache/pre-commit/repodm22vb3b/py_env-python3.12/lib/python3.12/site-packages/pyright/cli.py", line 34, in entrypoint
+    sys.exit(main(sys.argv[1:]))
+             ^^^^^^^^^^^^^^^^^^
+  File "/Users/kadelin/.cache/pre-commit/repodm22vb3b/py_env-python3.12/lib/python3.12/site-packages/pyright/cli.py", line 19, in main
+    return run(*args, **kwargs).returncode
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kadelin/.cache/pre-commit/repodm22vb3b/py_env-python3.12/lib/python3.12/site-packages/pyright/cli.py", line 25, in run
+    pkg_dir = install_pyright(args, quiet=None)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kadelin/.cache/pre-commit/repodm22vb3b/py_env-python3.12/lib/python3.12/site-packages/pyright/_utils.py", line 64, in install_pyright
+    node.run(
+  File "/Users/kadelin/.cache/pre-commit/repodm22vb3b/py_env-python3.12/lib/python3.12/site-packages/pyright/node.py", line 105, in run
+    binary = _ensure_available(target)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kadelin/.cache/pre-commit/repodm22vb3b/py_env-python3.12/lib/python3.12/site-packages/pyright/node.py", line 38, in _ensure_available
+    return Binary(path=_ensure_node_env(target), strategy=Strategy.NODEENV)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kadelin/.cache/pre-commit/repodm22vb3b/py_env-python3.12/lib/python3.12/site-packages/pyright/node.py", line 65, in _ensure_node_env
+    _install_node_env()
+  File "/Users/kadelin/.cache/pre-commit/repodm22vb3b/py_env-python3.12/lib/python3.12/site-packages/pyright/node.py", line 98, in _install_node_env
+    subprocess.run(args, check=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/Users/kadelin/.cache/pre-commit/repodm22vb3b/py_env-python3.12/bin/python', '-m', 'nodeenv', '/Users/kadelin/.cache/pyright-python/nodeenv']' returned non-zero exit status 1.
+

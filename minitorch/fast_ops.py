@@ -30,6 +30,26 @@ Fn = TypeVar("Fn")
 
 
 def njit(fn: Fn, **kwargs: Any) -> Fn:
+    """Compile a Python function into a Numba-optimized function using `njit`.
+
+    This function compiles the given Python function `fn` into a Numba-optimized
+    version with just-in-time compilation. The `inline="always"` option ensures
+    that the compiled function is always inlined into the calling code, improving
+    performance by reducing function call overhead.
+
+    Parameters
+    ----------
+    fn : Fn
+        The Python function to be compiled.
+    **kwargs : Any
+        Additional arguments for the Numba `njit` compiler.
+
+    Returns
+    -------
+    Fn
+        The Numba-optimized version of the input function.
+
+    """
     return _njit(inline="always", **kwargs)(fn)  # type: ignore
 
 
@@ -352,7 +372,7 @@ def _tensor_matrix_multiply(
                 a_pos = n * a_batch_stride + i * row_stride_a
                 b_pos = n * b_batch_stride + j * col_stride_b
                 # Accumulate the dot product
-                for _ in range(a_shape[-1]):  
+                for _ in range(a_shape[-1]):
                     acc += a_storage[a_pos] * b_storage[b_pos]
                     a_pos += a_strides[2]
                     b_pos += b_strides[1]

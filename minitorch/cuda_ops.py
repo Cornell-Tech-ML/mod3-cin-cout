@@ -1,7 +1,7 @@
 # type: ignore
 # Currently pyright doesn't support numba.cuda
 
-from typing import Callable, Optional, TypeVar, Any
+from typing import Callable, Optional, TypeVar, Any, Dict
 
 import numba
 from numba import cuda
@@ -30,11 +30,41 @@ Fn = TypeVar("Fn")
 
 
 # change to a cuda function
-def device_jit(fn: Fn, **kwargs) -> Fn:
+def device_jit(fn: Fn, **kwargs: Dict[str, Any]) -> Fn:
+    """Convert a Python function to a CUDA device function.
+
+    Parameters
+    ----------
+    fn : Fn
+        The Python function to compile for CUDA device use.
+    **kwargs : dict
+        Additional arguments for the CUDA JIT compiler.
+
+    Returns
+    -------
+    Fn
+        The compiled CUDA device function.
+
+    """
     return _jit(device=True, **kwargs)(fn)  # type: ignore
 
 
-def jit(fn, **kwargs) -> FakeCUDAKernel:
+def jit(fn: Fn, **kwargs: Dict[str, Any]) -> FakeCUDAKernel:
+    """Compile a Python function into a CUDA kernel.
+
+    Parameters
+    ----------
+    fn : Callable
+        The Python function to compile for CUDA kernel execution.
+    **kwargs : dict
+        Additional arguments for the CUDA JIT compiler.
+
+    Returns
+    -------
+    FakeCUDAKernel
+        The compiled CUDA kernel.
+
+    """
     return _jit(**kwargs)(fn)  # type: ignore
 
 
@@ -71,6 +101,7 @@ class CudaOps(TensorOps):
 
     @staticmethod
     def zip(fn: Callable[[float, float], float]) -> Callable[[Tensor, Tensor], Tensor]:
+        """See `tensor_ops.py`"""
         cufn: Callable[[float, float], float] = device_jit(fn)
         f = tensor_zip(cufn)
 
@@ -90,6 +121,7 @@ class CudaOps(TensorOps):
     def reduce(
         fn: Callable[[float, float], float], start: float = 0.0
     ) -> Callable[[Tensor, int], Tensor]:
+        """See `tensor_ops.py`"""
         cufn: Callable[[float, float], float] = device_jit(fn)
         f = tensor_reduce(cufn)
 
@@ -111,6 +143,7 @@ class CudaOps(TensorOps):
 
     @staticmethod
     def matrix_multiply(a: Tensor, b: Tensor) -> Tensor:
+        """See `tensor_ops.py`"""
         # Make these always be a 3 dimensional multiply
         both_2d = 0
         if len(a.shape) == 2:
@@ -309,6 +342,24 @@ jit_sum_practice = cuda.jit()(_sum_practice)
 
 
 def sum_practice(a: Tensor) -> TensorData:
+    """Compute the block-wise sum of elements in the input tensor.
+
+    This function utilizes a CUDA kernel to sum elements of the input tensor `a`
+    block-by-block. The results of each block's sum are stored in the output tensor `out`.
+
+    Parameters
+    ----------
+    a : Tensor
+        The input tensor containing the elements to be summed.
+
+    Returns
+    -------
+    TensorData
+        A tensor containing the sums of each block's elements.
+        The output tensor has a fixed size of 2 for simplicity, with results
+        computed using CUDA.
+
+    """
     (size,) = a.shape
     threadsperblock = THREADS_PER_BLOCK
     blockspergrid = (size // THREADS_PER_BLOCK) + 1
@@ -457,18 +508,17 @@ def _mm_practice(out: Storage, a: Storage, b: Storage, size: int) -> None:
     a_shared = cuda.shared.array((BLOCK_DIM, BLOCK_DIM), numba.float64)
     b_shared = cuda.shared.array((BLOCK_DIM, BLOCK_DIM), numba.float64)
 
-    # Thread indices within the block (local to the block). 
+    # Thread indices within the block (local to the block).
     # Each thread works on a specific row and column within the block.
     local_i = cuda.threadIdx.y  # Row within the block
     local_j = cuda.threadIdx.x  # Column within the block
 
-    # Compute the global indices (row and column) in the output matrix `out` 
+    # Compute the global indices (row and column) in the output matrix `out`
     # corresponding to the current thread in the block.
     i = cuda.blockIdx.x * cuda.blockDim.x + local_i
     j = cuda.blockIdx.y * cuda.blockDim.y + local_j
 
-    
-    # Initialize an accumulator for the dot product. 
+    # Initialize an accumulator for the dot product.
     # This will store the partial sum of the dot product for this thread's output element.
     acc = 0.0
 
@@ -511,6 +561,26 @@ jit_mm_practice = jit(_mm_practice)
 
 
 def mm_practice(a: Tensor, b: Tensor) -> TensorData:
+    """Perform matrix multiplication for small square matrices using shared memory.
+
+    This function computes the matrix product of two input tensors `a` and `b`,
+    assuming they are square matrices of the same size. The computation is optimized
+    by using shared memory for intermediate results, minimizing global memory accesses.
+
+    Parameters
+    ----------
+    a : Tensor
+        The first input tensor (matrix).
+    b : Tensor
+        The second input tensor (matrix).
+
+    Returns
+    -------
+    TensorData
+        A tensor containing the result of the matrix multiplication.
+        The output tensor has the same dimensions as the input matrices.
+
+    """
     (size, _) = a.shape
     threadsperblock = (THREADS_PER_BLOCK, THREADS_PER_BLOCK)
     blockspergrid = 1
