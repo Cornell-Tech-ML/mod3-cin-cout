@@ -336,8 +336,8 @@ def _tensor_matrix_multiply(
 
     # Outer loop over batch and output dimensions
     for n in prange(out_shape[0]):  # Batch
-        for i in range(out_shape[1]):  # Output rows
-            for j in range(out_shape[2]):  # Output columns
+        for i in prange(out_shape[1]):  # Output rows
+            for j in prange(out_shape[2]):  # Output columns
                 # Calculate the position in the output tensor
                 out_pos = n * out_batch_stride + i * out_strides[1] + j * out_strides[2]
                 out[out_pos] = 0  # Initialize to zero for accumulation
