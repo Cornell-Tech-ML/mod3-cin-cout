@@ -563,24 +563,24 @@ def _tensor_matrix_multiply(
     acc = 0.0
 
     for k in range(0, a_shape[-1], BLOCK_DIM):
-        if i < a_shape[-2] and k + local_j < a_shape[-1]:
-            a_shared[local_i, local_j] = a_storage[
-                batch * a_batch_stride + i * a_strides[-2] + (k + local_j) * a_strides[-1]
+        if i < a_shape[-2] and k + pj < a_shape[-1]:
+            a_shared[pi, pj] = a_storage[
+                batch * a_batch_stride + i * a_strides[-2] + (k + pj) * a_strides[-1]
             ]
         else:
-            a_shared[local_i, local_j] = 0.0
+            a_shared[pi, pj] = 0.0
 
-        if j < b_shape[-1] and k + local_i < b_shape[-2]:
-            b_shared[local_i, local_j] = b_storage[
-                batch * b_batch_stride + (k + local_i) * b_strides[-2] + j * b_strides[-1]
+        if j < b_shape[-1] and k + pi < b_shape[-2]:
+            b_shared[pi, pj] = b_storage[
+                batch * b_batch_stride + (k + pi) * b_strides[-2] + j * b_strides[-1]
             ]
         else:
-            b_shared[local_i, local_j] = 0.0
+            b_shared[pi, pj] = 0.0
 
         cuda.syncthreads()
 
         for local_k in range(min(BLOCK_DIM, a_shape[-1] - k)):
-            acc += a_shared[local_i, local_k] * b_shared[local_k, local_j]
+            acc += a_shared[pi, local_k] * b_shared[local_k, pj]
 
         cuda.syncthreads()
 
