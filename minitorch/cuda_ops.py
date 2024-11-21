@@ -586,6 +586,7 @@ def _tensor_matrix_multiply(
 
     # By leveraging shared memory to reduce access latency, this approach optimizes memory bandwidth usage
     # and achieves high parallel efficiency, making it well-suited for large-scale matrix operations.
+    
     # each thread per block will have its own acc
     acc = 0.0
 
