@@ -148,7 +148,7 @@ def eq(x: float, y: float) -> float:
         1.0 if x is equal to y, 0.0 otherwise.
 
     """
-    return 1.0 if x==y else 0.0
+    return 1.0 if x == y else 0.0
 
 
 # Returns the larger of two numbers
@@ -227,7 +227,7 @@ def relu(x: float) -> float:
         The ReLU of x (max(0, x)).
 
     """
-    return x if x>0 else 0.0
+    return x if x > 0 else 0.0
 
 
 ESP = 1e-6
@@ -384,6 +384,7 @@ def map(fn: Callable[[float], float]) -> Callable[[Iterable[float]], Iterable[fl
         List of output values.
 
     """
+
     def _map(ls: Iterable[float]) -> Iterable[float]:
         ret = []
         for x in ls:
@@ -394,7 +395,9 @@ def map(fn: Callable[[float], float]) -> Callable[[Iterable[float]], Iterable[fl
 
 
 # Combines elements from two iterables using a given function
-def zipWith(fn: Callable[[float, float], float]) -> Callable[[Iterable[float], Iterable[float]], Iterable[float]]:
+def zipWith(
+    fn: Callable[[float, float], float],
+) -> Callable[[Iterable[float], Iterable[float]], Iterable[float]]:
     """Apply a function to pairs of elements from two iterables.
 
     Parameters
@@ -412,6 +415,7 @@ def zipWith(fn: Callable[[float, float], float]) -> Callable[[Iterable[float], I
         List of output values.
 
     """
+
     def _zipWith(ls1: Iterable[float], ls2: Iterable[float]) -> Iterable[float]:
         ret = []
         for x, y in zip(ls1, ls2):
@@ -442,11 +446,13 @@ def reduce(
         The reduced value.
 
     """
+
     def _reduce(ls: Iterable[float]) -> float:
         val = start
         for l in ls:
             val = fn(val, l)
         return val
+
     return _reduce
 
 

@@ -188,7 +188,6 @@ class Scalar:
     def __gt__(self, b: ScalarLike) -> Scalar:
         return LT.apply(b, self)
 
-
     def __eq__(self, b: ScalarLike) -> Scalar:
         return EQ.apply(b, self)
 

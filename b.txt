@@ -17,11 +17,11 @@ backend = 'fast'
     @given(data())
 >   @settings(max_examples=100)
 
-tests/test_tensor_general.py:55: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_tensor_general.py:55:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 tests/test_tensor_general.py:68: in test_one_args
     assert_close(t2[ind], base_fn(t1[ind]))
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 a = np.float64(5.0), b = np.float64(6.0)
 
@@ -33,7 +33,7 @@ E           data=data(...),
 E           fn=('addConstant', addConstant, addConstant),
 E           backend='fast',
 E       )
-E       Draw 1: 
+E       Draw 1:
 E       [0.00 1.00]
 
 tests/strategies.py:17: AssertionError
@@ -45,11 +45,11 @@ backend = 'fast'
     @given(data())
 >   @settings(max_examples=100)
 
-tests/test_tensor_general.py:55: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_tensor_general.py:55:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 tests/test_tensor_general.py:68: in test_one_args
     assert_close(t2[ind], base_fn(t1[ind]))
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 a = np.float64(0.0), b = np.float64(1.0)
 
@@ -59,7 +59,7 @@ E       AssertionError: Failure x=0.000000 y=1.000000
 E       Falsifying example: test_one_args(
 E           data=data(...), fn=('cube', cube, cube), backend='fast',
 E       )
-E       Draw 1: 
+E       Draw 1:
 E       [
 E       	[0.00 1.00]]
 
@@ -72,11 +72,11 @@ backend = 'fast'
     @given(data())
 >   @settings(max_examples=100)
 
-tests/test_tensor_general.py:55: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_tensor_general.py:55:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 tests/test_tensor_general.py:68: in test_one_args
     assert_close(t2[ind], base_fn(t1[ind]))
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 a = np.float64(0.0), b = np.float64(0.2)
 
@@ -86,7 +86,7 @@ E       AssertionError: Failure x=0.000000 y=0.200000
 E       Falsifying example: test_one_args(
 E           data=data(...), fn=('div', div, div), backend='fast',
 E       )
-E       Draw 1: 
+E       Draw 1:
 E       [0.00 1.00]
 
 tests/strategies.py:17: AssertionError
@@ -98,11 +98,11 @@ backend = 'fast'
     @given(data())
 >   @settings(max_examples=100)
 
-tests/test_tensor_general.py:55: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_tensor_general.py:55:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 tests/test_tensor_general.py:68: in test_one_args
     assert_close(t2[ind], base_fn(t1[ind]))
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 a = np.float64(0.2857142857142857), b = np.float64(0.2222222222222222)
 
@@ -112,7 +112,7 @@ E       AssertionError: Failure x=0.285714 y=0.222222
 E       Falsifying example: test_one_args(
 E           data=data(...), fn=('inv', inv, inv), backend='fast',
 E       )
-E       Draw 1: 
+E       Draw 1:
 E       [0.00 1.00]
 
 tests/strategies.py:17: AssertionError
@@ -124,11 +124,11 @@ backend = 'fast'
     @given(data())
 >   @settings(max_examples=100)
 
-tests/test_tensor_general.py:55: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_tensor_general.py:55:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 tests/test_tensor_general.py:68: in test_one_args
     assert_close(t2[ind], base_fn(t1[ind]))
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 a = np.float64(0.0), b = np.float64(5.0)
 
@@ -140,7 +140,7 @@ E           data=data(...),
 E           fn=('multConstant', multConstant, multConstant),
 E           backend='fast',
 E       )
-E       Draw 1: 
+E       Draw 1:
 E       [0.00 1.00]
 
 tests/strategies.py:17: AssertionError
@@ -152,11 +152,11 @@ backend = 'fast'
     @given(data())
 >   @settings(max_examples=100)
 
-tests/test_tensor_general.py:55: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_tensor_general.py:55:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 tests/test_tensor_general.py:68: in test_one_args
     assert_close(t2[ind], base_fn(t1[ind]))
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 a = np.float64(-0.0), b = np.float64(-1.0)
 
@@ -166,7 +166,7 @@ E       AssertionError: Failure x=-0.000000 y=-1.000000
 E       Falsifying example: test_one_args(
 E           data=data(...), fn=('neg', neg, neg), backend='fast',
 E       )
-E       Draw 1: 
+E       Draw 1:
 E       [
 E       	[
 E       		[0.00 1.00]]]
@@ -180,11 +180,11 @@ backend = 'fast'
     @given(data())
 >   @settings(max_examples=100)
 
-tests/test_tensor_general.py:55: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_tensor_general.py:55:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 tests/test_tensor_general.py:68: in test_one_args
     assert_close(t2[ind], base_fn(t1[ind]))
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 a = np.float64(5.5), b = np.float64(6.5)
 
@@ -194,7 +194,7 @@ E       AssertionError: Failure x=5.500000 y=6.500000
 E       Falsifying example: test_one_args(
 E           data=data(...), fn=('relu', relu, relu), backend='fast',
 E       )
-E       Draw 1: 
+E       Draw 1:
 E       [0.00 1.00]
 
 tests/strategies.py:17: AssertionError
@@ -206,11 +206,11 @@ backend = 'fast'
     @given(data())
 >   @settings(max_examples=100)
 
-tests/test_tensor_general.py:55: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_tensor_general.py:55:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 tests/test_tensor_general.py:68: in test_one_args
     assert_close(t2[ind], base_fn(t1[ind]))
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 a = np.float64(0.5), b = 0.7310585786300049
 
@@ -220,7 +220,7 @@ E       AssertionError: Failure x=0.500000 y=0.731059
 E       Falsifying example: test_one_args(
 E           data=data(...), fn=('sig', sig, sig), backend='fast',
 E       )
-E       Draw 1: 
+E       Draw 1:
 E       [
 E       	[0.00 1.00]]
 
@@ -233,11 +233,11 @@ backend = 'fast'
     @given(data())
 >   @settings(max_examples=100)
 
-tests/test_tensor_general.py:55: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_tensor_general.py:55:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 tests/test_tensor_general.py:68: in test_one_args
     assert_close(t2[ind], base_fn(t1[ind]))
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 a = np.float64(0.0), b = np.float64(1.0)
 
@@ -247,7 +247,7 @@ E       AssertionError: Failure x=0.000000 y=1.000000
 E       Falsifying example: test_one_args(
 E           data=data(...), fn=('square', square, square), backend='fast',
 E       )
-E       Draw 1: 
+E       Draw 1:
 E       [
 E       	[0.00 1.00]]
 
@@ -260,11 +260,11 @@ backend = 'fast'
     @given(data())
 >   @settings(max_examples=100)
 
-tests/test_tensor_general.py:55: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_tensor_general.py:55:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 tests/test_tensor_general.py:68: in test_one_args
     assert_close(t2[ind], base_fn(t1[ind]))
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 a = np.float64(-5.0), b = np.float64(-4.0)
 
@@ -276,7 +276,7 @@ E           data=data(...),
 E           fn=('subConstant', subConstant, subConstant),
 E           backend='fast',
 E       )
-E       Draw 1: 
+E       Draw 1:
 E       [0.00 1.00]
 
 tests/strategies.py:17: AssertionError
@@ -288,11 +288,11 @@ backend = 'fast'
     @given(data())
 >   @settings(max_examples=100)
 
-tests/test_tensor_general.py:72: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_tensor_general.py:72:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 tests/test_tensor_general.py:85: in test_two_args
     assert_close(t3[ind], base_fn(t1[ind], t2[ind]))
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 a = np.float64(0.0), b = np.float64(1.0)
 
@@ -304,7 +304,7 @@ E           data=data(...), fn=('add2', add2, add2), backend='fast',
 E       )
 E       Draw 1: [
 E       [
-E       	[0.00 0.00]], 
+E       	[0.00 0.00]],
 E       [
 E       	[0.00 1.00]]]
 
@@ -317,11 +317,11 @@ backend = 'fast'
     @given(data())
 >   @settings(max_examples=100)
 
-tests/test_tensor_general.py:72: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_tensor_general.py:72:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 tests/test_tensor_general.py:85: in test_two_args
     assert_close(t3[ind], base_fn(t1[ind], t2[ind]))
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 a = np.float64(0.18181818181818182), b = np.float64(0.15384615384615385)
 
@@ -333,7 +333,7 @@ E           data=data(...), fn=('div2', div2, div2), backend='fast',
 E       )
 E       Draw 1: [
 E       [
-E       	[0.00 1.00]], 
+E       	[0.00 1.00]],
 E       [
 E       	[0.00 1.00]]]
 
@@ -346,11 +346,11 @@ backend = 'fast'
     @given(data())
 >   @settings(max_examples=100)
 
-tests/test_tensor_general.py:72: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_tensor_general.py:72:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 tests/test_tensor_general.py:85: in test_two_args
     assert_close(t3[ind], base_fn(t1[ind], t2[ind]))
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 a = np.float64(1.0), b = 0.0
 
@@ -362,7 +362,7 @@ E           data=data(...), fn=('gt2', gt2, gt2), backend='fast',
 E       )
 E       Draw 1: [
 E       [
-E       	[0.00 0.00]], 
+E       	[0.00 0.00]],
 E       [
 E       	[0.00 2.00]]]
 
@@ -375,11 +375,11 @@ backend = 'fast'
     @given(data())
 >   @settings(max_examples=100)
 
-tests/test_tensor_general.py:72: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_tensor_general.py:72:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 tests/test_tensor_general.py:85: in test_two_args
     assert_close(t3[ind], base_fn(t1[ind], t2[ind]))
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 a = np.float64(0.0), b = 1.0
 
@@ -391,7 +391,7 @@ E           data=data(...), fn=('lt2', lt2, lt2), backend='fast',
 E       )
 E       Draw 1: [
 E       [
-E       	[0.00 0.00]], 
+E       	[0.00 0.00]],
 E       [
 E       	[0.00 2.00]]]
 
@@ -404,11 +404,11 @@ backend = 'fast'
     @given(data())
 >   @settings(max_examples=100)
 
-tests/test_tensor_general.py:72: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_tensor_general.py:72:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 tests/test_tensor_general.py:85: in test_two_args
     assert_close(t3[ind], base_fn(t1[ind], t2[ind]))
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 a = np.float64(0.0), b = np.float64(1.0)
 
@@ -420,7 +420,7 @@ E           data=data(...), fn=('mul2', mul2, mul2), backend='fast',
 E       )
 E       Draw 1: [
 E       [
-E       	[0.00 1.00]], 
+E       	[0.00 1.00]],
 E       [
 E       	[0.00 1.00]]]
 
@@ -433,13 +433,13 @@ backend = 'fast'
     @given(data())
 >   @pytest.mark.parametrize("fn", one_arg)
 
-tests/test_tensor_general.py:89: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_tensor_general.py:89:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 tests/test_tensor_general.py:99: in test_one_derivative
     grad_check(tensor_fn, t1)
 minitorch/tensor_functions.py:878: in grad_check
     np.testing.assert_allclose(
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 args = (<function assert_allclose.<locals>.compare at 0x111de4cc0>, array(1.), array(2.))
 kwds = {'equal_nan': True, 'err_msg': '\n\nGradient check error for function <function MathTest.addConstant at 0x110023ba0>.\... 2.000000 from central difference.\n\n', 'header': 'Not equal to tolerance rtol=0.01, atol=0.01', 'strict': False, ...}
@@ -448,19 +448,19 @@ kwds = {'equal_nan': True, 'err_msg': '\n\nGradient check error for function <fu
     def inner(*args, **kwds):
         with self._recreate_cm():
 >           return func(*args, **kwds)
-E           AssertionError: 
+E           AssertionError:
 E           Not equal to tolerance rtol=0.01, atol=0.01
-E           
-E           
+E
+E
 E           Gradient check error for function <function MathTest.addConstant at 0x110023ba0>.
-E           
+E
 E           Input (
 E           [0.00 0.00],)
-E           
+E
 E           Received derivative 1.000000 for argument 0 and index (0,),
 E           but was expecting derivative 2.000000 from central difference.
-E           
-E           
+E
+E
 E           Mismatched elements: 1 / 1 (100%)
 E           Max absolute difference among violations: 1.
 E           Max relative difference among violations: 0.5
@@ -471,7 +471,7 @@ E               data=data(...),
 E               fn=('addConstant', addConstant, addConstant),
 E               backend='fast',
 E           )
-E           Draw 1: 
+E           Draw 1:
 E           [0.00 0.00]
 
 /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/contextlib.py:81: AssertionError
@@ -483,13 +483,13 @@ backend = 'fast'
     @given(data())
 >   @pytest.mark.parametrize("fn", one_arg)
 
-tests/test_tensor_general.py:89: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_tensor_general.py:89:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 tests/test_tensor_general.py:99: in test_one_derivative
     grad_check(tensor_fn, t1)
 minitorch/tensor_functions.py:878: in grad_check
     np.testing.assert_allclose(
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 args = (<function assert_allclose.<locals>.compare at 0x111ddf7e0>, array(0.), array(3.))
 kwds = {'equal_nan': True, 'err_msg': '\n\nGradient check error for function <function MathTest.cube at 0x110023ce0>.\n\nInpu... 3.000000 from central difference.\n\n', 'header': 'Not equal to tolerance rtol=0.01, atol=0.01', 'strict': False, ...}
@@ -498,19 +498,19 @@ kwds = {'equal_nan': True, 'err_msg': '\n\nGradient check error for function <fu
     def inner(*args, **kwds):
         with self._recreate_cm():
 >           return func(*args, **kwds)
-E           AssertionError: 
+E           AssertionError:
 E           Not equal to tolerance rtol=0.01, atol=0.01
-E           
-E           
+E
+E
 E           Gradient check error for function <function MathTest.cube at 0x110023ce0>.
-E           
+E
 E           Input (
 E           [0.00 0.00 1.00],)
-E           
+E
 E           Received derivative 0.000000 for argument 0 and index (2,),
 E           but was expecting derivative 3.000000 from central difference.
-E           
-E           
+E
+E
 E           Mismatched elements: 1 / 1 (100%)
 E           Max absolute difference among violations: 3.
 E           Max relative difference among violations: 1.
@@ -519,7 +519,7 @@ E            DESIRED: array(3.)
 E           Falsifying example: test_one_derivative(
 E               data=data(...), fn=('cube', cube, cube), backend='fast',
 E           )
-E           Draw 1: 
+E           Draw 1:
 E           [0.00 0.00 1.00]
 
 /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/contextlib.py:81: AssertionError
@@ -531,13 +531,13 @@ backend = 'fast'
     @given(data())
 >   @pytest.mark.parametrize("fn", one_arg)
 
-tests/test_tensor_general.py:89: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_tensor_general.py:89:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 tests/test_tensor_general.py:99: in test_one_derivative
     grad_check(tensor_fn, t1)
 minitorch/tensor_functions.py:878: in grad_check
     np.testing.assert_allclose(
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 args = (<function assert_allclose.<locals>.compare at 0x1113979c0>, array(0.2), array(0.4))
 kwds = {'equal_nan': True, 'err_msg': '\n\nGradient check error for function <function MathTest.div at 0x110023ec0>.\n\nInput... 0.400000 from central difference.\n\n', 'header': 'Not equal to tolerance rtol=0.01, atol=0.01', 'strict': False, ...}
@@ -546,19 +546,19 @@ kwds = {'equal_nan': True, 'err_msg': '\n\nGradient check error for function <fu
     def inner(*args, **kwds):
         with self._recreate_cm():
 >           return func(*args, **kwds)
-E           AssertionError: 
+E           AssertionError:
 E           Not equal to tolerance rtol=0.01, atol=0.01
-E           
-E           
+E
+E
 E           Gradient check error for function <function MathTest.div at 0x110023ec0>.
-E           
+E
 E           Input (
 E           [0.00 0.00],)
-E           
+E
 E           Received derivative 0.200000 for argument 0 and index (0,),
 E           but was expecting derivative 0.400000 from central difference.
-E           
-E           
+E
+E
 E           Mismatched elements: 1 / 1 (100%)
 E           Max absolute difference among violations: 0.2
 E           Max relative difference among violations: 0.5
@@ -567,7 +567,7 @@ E            DESIRED: array(0.4)
 E           Falsifying example: test_one_derivative(
 E               data=data(...), fn=('div', div, div), backend='fast',
 E           )
-E           Draw 1: 
+E           Draw 1:
 E           [0.00 0.00]
 
 /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/contextlib.py:81: AssertionError
@@ -579,13 +579,13 @@ backend = 'fast'
     @given(data())
 >   @pytest.mark.parametrize("fn", one_arg)
 
-tests/test_tensor_general.py:89: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_tensor_general.py:89:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 tests/test_tensor_general.py:99: in test_one_derivative
     grad_check(tensor_fn, t1)
 minitorch/tensor_functions.py:878: in grad_check
     np.testing.assert_allclose(
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 args = (<function assert_allclose.<locals>.compare at 0x1113b71a0>, array(-0.08163265), array(-0.16326531))
 kwds = {'equal_nan': True, 'err_msg': '\n\nGradient check error for function <function MathTestVariable.inv at 0x110034ae0>.\...-0.163265 from central difference.\n\n', 'header': 'Not equal to tolerance rtol=0.01, atol=0.01', 'strict': False, ...}
@@ -594,19 +594,19 @@ kwds = {'equal_nan': True, 'err_msg': '\n\nGradient check error for function <fu
     def inner(*args, **kwds):
         with self._recreate_cm():
 >           return func(*args, **kwds)
-E           AssertionError: 
+E           AssertionError:
 E           Not equal to tolerance rtol=0.01, atol=0.01
-E           
-E           
+E
+E
 E           Gradient check error for function <function MathTestVariable.inv at 0x110034ae0>.
-E           
+E
 E           Input (
 E           [0.00 0.00],)
-E           
+E
 E           Received derivative -0.081633 for argument 0 and index (0,),
 E           but was expecting derivative -0.163265 from central difference.
-E           
-E           
+E
+E
 E           Mismatched elements: 1 / 1 (100%)
 E           Max absolute difference among violations: 0.08163265
 E           Max relative difference among violations: 0.5
@@ -615,7 +615,7 @@ E            DESIRED: array(-0.163265)
 E           Falsifying example: test_one_derivative(
 E               data=data(...), fn=('inv', inv, inv), backend='fast',
 E           )
-E           Draw 1: 
+E           Draw 1:
 E           [0.00 0.00]
 
 /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/contextlib.py:81: AssertionError
@@ -627,13 +627,13 @@ backend = 'fast'
     @given(data())
 >   @pytest.mark.parametrize("fn", one_arg)
 
-tests/test_tensor_general.py:89: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_tensor_general.py:89:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 tests/test_tensor_general.py:99: in test_one_derivative
     grad_check(tensor_fn, t1)
 minitorch/tensor_functions.py:878: in grad_check
     np.testing.assert_allclose(
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 args = (<function assert_allclose.<locals>.compare at 0x1111a6c00>, array(5.), array(10.))
 kwds = {'equal_nan': True, 'err_msg': '\n\nGradient check error for function <function MathTest.multConstant at 0x110023e20>....10.000000 from central difference.\n\n', 'header': 'Not equal to tolerance rtol=0.01, atol=0.01', 'strict': False, ...}
@@ -642,19 +642,19 @@ kwds = {'equal_nan': True, 'err_msg': '\n\nGradient check error for function <fu
     def inner(*args, **kwds):
         with self._recreate_cm():
 >           return func(*args, **kwds)
-E           AssertionError: 
+E           AssertionError:
 E           Not equal to tolerance rtol=0.01, atol=0.01
-E           
-E           
+E
+E
 E           Gradient check error for function <function MathTest.multConstant at 0x110023e20>.
-E           
+E
 E           Input (
 E           [0.00 0.00],)
-E           
+E
 E           Received derivative 5.000000 for argument 0 and index (0,),
 E           but was expecting derivative 10.000000 from central difference.
-E           
-E           
+E
+E
 E           Mismatched elements: 1 / 1 (100%)
 E           Max absolute difference among violations: 5.
 E           Max relative difference among violations: 0.5
@@ -665,7 +665,7 @@ E               data=data(...),
 E               fn=('multConstant', multConstant, multConstant),
 E               backend='fast',
 E           )
-E           Draw 1: 
+E           Draw 1:
 E           [0.00 0.00]
 
 /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/contextlib.py:81: AssertionError
@@ -677,13 +677,13 @@ backend = 'fast'
     @given(data())
 >   @pytest.mark.parametrize("fn", one_arg)
 
-tests/test_tensor_general.py:89: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_tensor_general.py:89:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 tests/test_tensor_general.py:99: in test_one_derivative
     grad_check(tensor_fn, t1)
 minitorch/tensor_functions.py:878: in grad_check
     np.testing.assert_allclose(
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 args = (<function assert_allclose.<locals>.compare at 0x1116dc220>, array(-1.), array(0.))
 kwds = {'equal_nan': True, 'err_msg': '\n\nGradient check error for function <function MathTest.neg at 0x110013240>.\n\nInput... 0.000000 from central difference.\n\n', 'header': 'Not equal to tolerance rtol=0.01, atol=0.01', 'strict': False, ...}
@@ -692,20 +692,20 @@ kwds = {'equal_nan': True, 'err_msg': '\n\nGradient check error for function <fu
     def inner(*args, **kwds):
         with self._recreate_cm():
 >           return func(*args, **kwds)
-E           AssertionError: 
+E           AssertionError:
 E           Not equal to tolerance rtol=0.01, atol=0.01
-E           
-E           
+E
+E
 E           Gradient check error for function <function MathTest.neg at 0x110013240>.
-E           
+E
 E           Input (
 E           [
 E           	[0.00 0.00]],)
-E           
+E
 E           Received derivative -1.000000 for argument 0 and index (0, 1),
 E           but was expecting derivative 0.000000 from central difference.
-E           
-E           
+E
+E
 E           Mismatched elements: 1 / 1 (100%)
 E           Max absolute difference among violations: 1.
 E           Max relative difference among violations: inf
@@ -714,7 +714,7 @@ E            DESIRED: array(0.)
 E           Falsifying example: test_one_derivative(
 E               data=data(...), fn=('neg', neg, neg), backend='fast',
 E           )
-E           Draw 1: 
+E           Draw 1:
 E           [
 E           	[0.00 0.00]]
 
@@ -727,13 +727,13 @@ backend = 'fast'
     @given(data())
 >   @pytest.mark.parametrize("fn", one_arg)
 
-tests/test_tensor_general.py:89: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_tensor_general.py:89:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 tests/test_tensor_general.py:99: in test_one_derivative
     grad_check(tensor_fn, t1)
 minitorch/tensor_functions.py:878: in grad_check
     np.testing.assert_allclose(
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 args = (<function assert_allclose.<locals>.compare at 0x1117b5ee0>, array(1.), array(2.))
 kwds = {'equal_nan': True, 'err_msg': '\n\nGradient check error for function <function MathTestVariable.relu at 0x110034cc0>.... 2.000000 from central difference.\n\n', 'header': 'Not equal to tolerance rtol=0.01, atol=0.01', 'strict': False, ...}
@@ -742,19 +742,19 @@ kwds = {'equal_nan': True, 'err_msg': '\n\nGradient check error for function <fu
     def inner(*args, **kwds):
         with self._recreate_cm():
 >           return func(*args, **kwds)
-E           AssertionError: 
+E           AssertionError:
 E           Not equal to tolerance rtol=0.01, atol=0.01
-E           
-E           
+E
+E
 E           Gradient check error for function <function MathTestVariable.relu at 0x110034cc0>.
-E           
+E
 E           Input (
 E           [0.00 0.00],)
-E           
+E
 E           Received derivative 1.000000 for argument 0 and index (0,),
 E           but was expecting derivative 2.000000 from central difference.
-E           
-E           
+E
+E
 E           Mismatched elements: 1 / 1 (100%)
 E           Max absolute difference among violations: 1.
 E           Max relative difference among violations: 0.5
@@ -763,7 +763,7 @@ E            DESIRED: array(2.)
 E           Falsifying example: test_one_derivative(
 E               data=data(...), fn=('relu', relu, relu), backend='fast',
 E           )
-E           Draw 1: 
+E           Draw 1:
 E           [0.00 0.00]
 
 /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/contextlib.py:81: AssertionError
@@ -775,13 +775,13 @@ backend = 'fast'
     @given(data())
 >   @pytest.mark.parametrize("fn", one_arg)
 
-tests/test_tensor_general.py:89: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_tensor_general.py:89:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 tests/test_tensor_general.py:99: in test_one_derivative
     grad_check(tensor_fn, t1)
 minitorch/tensor_functions.py:878: in grad_check
     np.testing.assert_allclose(
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 args = (<function assert_allclose.<locals>.compare at 0x111e2d940>, array(0.25), array(0.19661193))
 kwds = {'equal_nan': True, 'err_msg': '\n\nGradient check error for function <function MathTestVariable.sig at 0x110034b80>.\... 0.196612 from central difference.\n\n', 'header': 'Not equal to tolerance rtol=0.01, atol=0.01', 'strict': False, ...}
@@ -790,19 +790,19 @@ kwds = {'equal_nan': True, 'err_msg': '\n\nGradient check error for function <fu
     def inner(*args, **kwds):
         with self._recreate_cm():
 >           return func(*args, **kwds)
-E           AssertionError: 
+E           AssertionError:
 E           Not equal to tolerance rtol=0.01, atol=0.01
-E           
-E           
+E
+E
 E           Gradient check error for function <function MathTestVariable.sig at 0x110034b80>.
-E           
+E
 E           Input (
 E           [0.00 0.00 1.00],)
-E           
+E
 E           Received derivative 0.250000 for argument 0 and index (2,),
 E           but was expecting derivative 0.196612 from central difference.
-E           
-E           
+E
+E
 E           Mismatched elements: 1 / 1 (100%)
 E           Max absolute difference among violations: 0.05338807
 E           Max relative difference among violations: 0.27154032
@@ -811,7 +811,7 @@ E            DESIRED: array(0.196612)
 E           Falsifying example: test_one_derivative(
 E               data=data(...), fn=('sig', sig, sig), backend='fast',
 E           )
-E           Draw 1: 
+E           Draw 1:
 E           [0.00 0.00 1.00]
 
 /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/contextlib.py:81: AssertionError
@@ -823,13 +823,13 @@ backend = 'fast'
     @given(data())
 >   @pytest.mark.parametrize("fn", one_arg)
 
-tests/test_tensor_general.py:89: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_tensor_general.py:89:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 tests/test_tensor_general.py:99: in test_one_derivative
     grad_check(tensor_fn, t1)
 minitorch/tensor_functions.py:878: in grad_check
     np.testing.assert_allclose(
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 args = (<function assert_allclose.<locals>.compare at 0x11137db20>, array(1.), array(2.))
 kwds = {'equal_nan': True, 'err_msg': '\n\nGradient check error for function <function MathTest.square at 0x110023c40>.\n\nIn... 2.000000 from central difference.\n\n', 'header': 'Not equal to tolerance rtol=0.01, atol=0.01', 'strict': False, ...}
@@ -838,19 +838,19 @@ kwds = {'equal_nan': True, 'err_msg': '\n\nGradient check error for function <fu
     def inner(*args, **kwds):
         with self._recreate_cm():
 >           return func(*args, **kwds)
-E           AssertionError: 
+E           AssertionError:
 E           Not equal to tolerance rtol=0.01, atol=0.01
-E           
-E           
+E
+E
 E           Gradient check error for function <function MathTest.square at 0x110023c40>.
-E           
+E
 E           Input (
 E           [0.00 0.00 1.00],)
-E           
+E
 E           Received derivative 1.000000 for argument 0 and index (2,),
 E           but was expecting derivative 2.000000 from central difference.
-E           
-E           
+E
+E
 E           Mismatched elements: 1 / 1 (100%)
 E           Max absolute difference among violations: 1.
 E           Max relative difference among violations: 0.5
@@ -859,7 +859,7 @@ E            DESIRED: array(2.)
 E           Falsifying example: test_one_derivative(
 E               data=data(...), fn=('square', square, square), backend='fast',
 E           )
-E           Draw 1: 
+E           Draw 1:
 E           [0.00 0.00 1.00]
 
 /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/contextlib.py:81: AssertionError
@@ -871,13 +871,13 @@ backend = 'fast'
     @given(data())
 >   @pytest.mark.parametrize("fn", one_arg)
 
-tests/test_tensor_general.py:89: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_tensor_general.py:89:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 tests/test_tensor_general.py:99: in test_one_derivative
     grad_check(tensor_fn, t1)
 minitorch/tensor_functions.py:878: in grad_check
     np.testing.assert_allclose(
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 args = (<function assert_allclose.<locals>.compare at 0x11137d620>, array(1.), array(2.))
 kwds = {'equal_nan': True, 'err_msg': '\n\nGradient check error for function <function MathTest.subConstant at 0x110023d80>.\... 2.000000 from central difference.\n\n', 'header': 'Not equal to tolerance rtol=0.01, atol=0.01', 'strict': False, ...}
@@ -886,19 +886,19 @@ kwds = {'equal_nan': True, 'err_msg': '\n\nGradient check error for function <fu
     def inner(*args, **kwds):
         with self._recreate_cm():
 >           return func(*args, **kwds)
-E           AssertionError: 
+E           AssertionError:
 E           Not equal to tolerance rtol=0.01, atol=0.01
-E           
-E           
+E
+E
 E           Gradient check error for function <function MathTest.subConstant at 0x110023d80>.
-E           
+E
 E           Input (
 E           [0.00 0.00],)
-E           
+E
 E           Received derivative 1.000000 for argument 0 and index (0,),
 E           but was expecting derivative 2.000000 from central difference.
-E           
-E           
+E
+E
 E           Mismatched elements: 1 / 1 (100%)
 E           Max absolute difference among violations: 1.
 E           Max relative difference among violations: 0.5
@@ -909,7 +909,7 @@ E               data=data(...),
 E               fn=('subConstant', subConstant, subConstant),
 E               backend='fast',
 E           )
-E           Draw 1: 
+E           Draw 1:
 E           [0.00 0.00]
 
 /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/contextlib.py:81: AssertionError
@@ -921,13 +921,13 @@ backend = 'fast'
     @given(data())
 >   @settings(max_examples=50)
 
-tests/test_tensor_general.py:103: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_tensor_general.py:103:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 tests/test_tensor_general.py:114: in test_two_grad
     grad_check(tensor_fn, t1, t2)
 minitorch/tensor_functions.py:878: in grad_check
     np.testing.assert_allclose(
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 args = (<function assert_allclose.<locals>.compare at 0x111e2eac0>, array(1.), array(0.))
 kwds = {'equal_nan': True, 'err_msg': '\n\nGradient check error for function <function MathTest.add2 at 0x110034360>.\n\nInpu... 0.000000 from central difference.\n\n', 'header': 'Not equal to tolerance rtol=0.01, atol=0.01', 'strict': False, ...}
@@ -936,22 +936,22 @@ kwds = {'equal_nan': True, 'err_msg': '\n\nGradient check error for function <fu
     def inner(*args, **kwds):
         with self._recreate_cm():
 >           return func(*args, **kwds)
-E           AssertionError: 
+E           AssertionError:
 E           Not equal to tolerance rtol=0.01, atol=0.01
-E           
-E           
+E
+E
 E           Gradient check error for function <function MathTest.add2 at 0x110034360>.
-E           
+E
 E           Input (
 E           [
-E           	[0.00 0.00]], 
+E           	[0.00 0.00]],
 E           [
 E           	[0.00 0.00]])
-E           
+E
 E           Received derivative 1.000000 for argument 0 and index (0, 1),
 E           but was expecting derivative 0.000000 from central difference.
-E           
-E           
+E
+E
 E           Mismatched elements: 1 / 1 (100%)
 E           Max absolute difference among violations: 1.
 E           Max relative difference among violations: inf
@@ -962,7 +962,7 @@ E               data=data(...), fn=('add2', add2, add2), backend='fast',
 E           )
 E           Draw 1: [
 E           [
-E           	[0.00 0.00]], 
+E           	[0.00 0.00]],
 E           [
 E           	[0.00 0.00]]]
 
@@ -975,13 +975,13 @@ backend = 'fast'
     @given(data())
 >   @settings(max_examples=50)
 
-tests/test_tensor_general.py:103: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_tensor_general.py:103:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 tests/test_tensor_general.py:114: in test_two_grad
     grad_check(tensor_fn, t1, t2)
 minitorch/tensor_functions.py:878: in grad_check
     np.testing.assert_allclose(
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 args = (<function assert_allclose.<locals>.compare at 0x11137cf40>, array(0.), array(-0.03305785))
 kwds = {'equal_nan': True, 'err_msg': '\n\nGradient check error for function <function MathTest.div2 at 0x1100344a0>.\n\nInpu...-0.033058 from central difference.\n\n', 'header': 'Not equal to tolerance rtol=0.01, atol=0.01', 'strict': False, ...}
@@ -990,22 +990,22 @@ kwds = {'equal_nan': True, 'err_msg': '\n\nGradient check error for function <fu
     def inner(*args, **kwds):
         with self._recreate_cm():
 >           return func(*args, **kwds)
-E           AssertionError: 
+E           AssertionError:
 E           Not equal to tolerance rtol=0.01, atol=0.01
-E           
-E           
+E
+E
 E           Gradient check error for function <function MathTest.div2 at 0x1100344a0>.
-E           
+E
 E           Input (
 E           [
-E           	[0.00 1.00]], 
+E           	[0.00 1.00]],
 E           [
 E           	[0.00 0.00]])
-E           
+E
 E           Received derivative 0.000000 for argument 1 and index (0, 0),
 E           but was expecting derivative -0.033058 from central difference.
-E           
-E           
+E
+E
 E           Mismatched elements: 1 / 1 (100%)
 E           Max absolute difference among violations: 0.03305785
 E           Max relative difference among violations: 1.
@@ -1016,7 +1016,7 @@ E               data=data(...), fn=('div2', div2, div2), backend='fast',
 E           )
 E           Draw 1: [
 E           [
-E           	[0.00 1.00]], 
+E           	[0.00 1.00]],
 E           [
 E           	[0.00 0.00]]]
 
@@ -1029,13 +1029,13 @@ backend = 'fast'
     @given(data())
 >   @settings(max_examples=50)
 
-tests/test_tensor_general.py:103: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_tensor_general.py:103:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 tests/test_tensor_general.py:114: in test_two_grad
     grad_check(tensor_fn, t1, t2)
 minitorch/tensor_functions.py:878: in grad_check
     np.testing.assert_allclose(
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 args = (<function assert_allclose.<locals>.compare at 0x1116b1580>, array(0.), array(1.))
 kwds = {'equal_nan': True, 'err_msg': '\n\nGradient check error for function <function MathTest.mul2 at 0x110034400>.\n\nInpu... 1.000000 from central difference.\n\n', 'header': 'Not equal to tolerance rtol=0.01, atol=0.01', 'strict': False, ...}
@@ -1044,22 +1044,22 @@ kwds = {'equal_nan': True, 'err_msg': '\n\nGradient check error for function <fu
     def inner(*args, **kwds):
         with self._recreate_cm():
 >           return func(*args, **kwds)
-E           AssertionError: 
+E           AssertionError:
 E           Not equal to tolerance rtol=0.01, atol=0.01
-E           
-E           
+E
+E
 E           Gradient check error for function <function MathTest.mul2 at 0x110034400>.
-E           
+E
 E           Input (
 E           [
-E           	[0.00 0.00]], 
+E           	[0.00 0.00]],
 E           [
 E           	[0.00 1.00]])
-E           
+E
 E           Received derivative 0.000000 for argument 0 and index (0, 1),
 E           but was expecting derivative 1.000000 from central difference.
-E           
-E           
+E
+E
 E           Mismatched elements: 1 / 1 (100%)
 E           Max absolute difference among violations: 1.
 E           Max relative difference among violations: 1.
@@ -1070,7 +1070,7 @@ E               data=data(...), fn=('mul2', mul2, mul2), backend='fast',
 E           )
 E           Draw 1: [
 E           [
-E           	[0.00 0.00]], 
+E           	[0.00 0.00]],
 E           [
 E           	[0.00 1.00]]]
 
@@ -1083,13 +1083,13 @@ backend = 'fast'
     @given(data())
 >   @settings(max_examples=100)
 
-tests/test_tensor_general.py:118: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_tensor_general.py:118:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 tests/test_tensor_general.py:129: in test_reduce
     grad_check(tensor_fn, t1)
 minitorch/tensor_functions.py:878: in grad_check
     np.testing.assert_allclose(
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 args = (<function assert_allclose.<locals>.compare at 0x1113b4f40>, array(0.5), array(0.))
 kwds = {'equal_nan': True, 'err_msg': '\n\nGradient check error for function <function MathTestVariable.mean_full_red at 0x11... 0.000000 from central difference.\n\n', 'header': 'Not equal to tolerance rtol=0.01, atol=0.01', 'strict': False, ...}
@@ -1098,20 +1098,20 @@ kwds = {'equal_nan': True, 'err_msg': '\n\nGradient check error for function <fu
     def inner(*args, **kwds):
         with self._recreate_cm():
 >           return func(*args, **kwds)
-E           AssertionError: 
+E           AssertionError:
 E           Not equal to tolerance rtol=0.01, atol=0.01
-E           
-E           
+E
+E
 E           Gradient check error for function <function MathTestVariable.mean_full_red at 0x110034fe0>.
-E           
+E
 E           Input (
 E           [
 E           	[0.00 0.00]],)
-E           
+E
 E           Received derivative 0.500000 for argument 0 and index (0, 1),
 E           but was expecting derivative 0.000000 from central difference.
-E           
-E           
+E
+E
 E           Mismatched elements: 1 / 1 (100%)
 E           Max absolute difference among violations: 0.5
 E           Max relative difference among violations: inf
@@ -1122,7 +1122,7 @@ E               data=data(...),
 E               fn=('mean_full_red', mean_full_red, mean_full_red),
 E               backend='fast',
 E           )
-E           Draw 1: 
+E           Draw 1:
 E           [
 E           	[0.00 0.00]]
 
@@ -1135,13 +1135,13 @@ backend = 'fast'
     @given(data())
 >   @settings(max_examples=100)
 
-tests/test_tensor_general.py:118: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_tensor_general.py:118:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 tests/test_tensor_general.py:129: in test_reduce
     grad_check(tensor_fn, t1)
 minitorch/tensor_functions.py:878: in grad_check
     np.testing.assert_allclose(
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 args = (<function assert_allclose.<locals>.compare at 0x1113942c0>, array(1.), array(0.))
 kwds = {'equal_nan': True, 'err_msg': '\n\nGradient check error for function <function MathTestVariable.mean_red at 0x110034f... 0.000000 from central difference.\n\n', 'header': 'Not equal to tolerance rtol=0.01, atol=0.01', 'strict': False, ...}
@@ -1150,20 +1150,20 @@ kwds = {'equal_nan': True, 'err_msg': '\n\nGradient check error for function <fu
     def inner(*args, **kwds):
         with self._recreate_cm():
 >           return func(*args, **kwds)
-E           AssertionError: 
+E           AssertionError:
 E           Not equal to tolerance rtol=0.01, atol=0.01
-E           
-E           
+E
+E
 E           Gradient check error for function <function MathTestVariable.mean_red at 0x110034f40>.
-E           
+E
 E           Input (
 E           [
 E           	[0.00 0.00]],)
-E           
+E
 E           Received derivative 1.000000 for argument 0 and index (0, 1),
 E           but was expecting derivative 0.000000 from central difference.
-E           
-E           
+E
+E
 E           Mismatched elements: 1 / 1 (100%)
 E           Max absolute difference among violations: 1.
 E           Max relative difference among violations: inf
@@ -1172,7 +1172,7 @@ E            DESIRED: array(0.)
 E           Falsifying example: test_reduce(
 E               data=data(...), fn=('mean_red', mean_red, mean_red), backend='fast',
 E           )
-E           Draw 1: 
+E           Draw 1:
 E           [
 E           	[0.00 0.00]]
 
@@ -1185,13 +1185,13 @@ backend = 'fast'
     @given(data())
 >   @settings(max_examples=100)
 
-tests/test_tensor_general.py:118: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_tensor_general.py:118:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 tests/test_tensor_general.py:129: in test_reduce
     grad_check(tensor_fn, t1)
 minitorch/tensor_functions.py:878: in grad_check
     np.testing.assert_allclose(
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 args = (<function assert_allclose.<locals>.compare at 0x11137c900>, array(1.), array(0.))
 kwds = {'equal_nan': True, 'err_msg': '\n\nGradient check error for function <function MathTestVariable.sum_red at 0x110034ea... 0.000000 from central difference.\n\n', 'header': 'Not equal to tolerance rtol=0.01, atol=0.01', 'strict': False, ...}
@@ -1200,20 +1200,20 @@ kwds = {'equal_nan': True, 'err_msg': '\n\nGradient check error for function <fu
     def inner(*args, **kwds):
         with self._recreate_cm():
 >           return func(*args, **kwds)
-E           AssertionError: 
+E           AssertionError:
 E           Not equal to tolerance rtol=0.01, atol=0.01
-E           
-E           
+E
+E
 E           Gradient check error for function <function MathTestVariable.sum_red at 0x110034ea0>.
-E           
+E
 E           Input (
 E           [
 E           	[0.00 0.00]],)
-E           
+E
 E           Received derivative 1.000000 for argument 0 and index (0, 1),
 E           but was expecting derivative 0.000000 from central difference.
-E           
-E           
+E
+E
 E           Mismatched elements: 1 / 1 (100%)
 E           Max absolute difference among violations: 1.
 E           Max relative difference among violations: inf
@@ -1222,7 +1222,7 @@ E            DESIRED: array(0.)
 E           Falsifying example: test_reduce(
 E               data=data(...), fn=('sum_red', sum_red, sum_red), backend='fast',
 E           )
-E           Draw 1: 
+E           Draw 1:
 E           [
 E           	[0.00 0.00]]
 
@@ -1235,13 +1235,13 @@ backend = 'fast'
     @given(data())
 >   @settings(max_examples=25)
 
-tests/test_tensor_general.py:309: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_tensor_general.py:309:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 tests/test_tensor_general.py:324: in test_two_grad_broadcast
     grad_check(tensor_fn, t1.sum(0), t2)
 minitorch/tensor_functions.py:878: in grad_check
     np.testing.assert_allclose(
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 args = (<function assert_allclose.<locals>.compare at 0x111035760>, array(1.), array(0.))
 kwds = {'equal_nan': True, 'err_msg': '\n\nGradient check error for function <function MathTest.add2 at 0x110034360>.\n\nInpu... 0.000000 from central difference.\n\n', 'header': 'Not equal to tolerance rtol=0.01, atol=0.01', 'strict': False, ...}
@@ -1250,20 +1250,20 @@ kwds = {'equal_nan': True, 'err_msg': '\n\nGradient check error for function <fu
     def inner(*args, **kwds):
         with self._recreate_cm():
 >           return func(*args, **kwds)
-E           AssertionError: 
+E           AssertionError:
 E           Not equal to tolerance rtol=0.01, atol=0.01
-E           
-E           
+E
+E
 E           Gradient check error for function <function MathTest.add2 at 0x110034360>.
-E           
+E
 E           Input (
-E           [0.00], 
+E           [0.00],
 E           [0.00 0.00])
-E           
+E
 E           Received derivative 1.000000 for argument 1 and index (1,),
 E           but was expecting derivative 0.000000 from central difference.
-E           
-E           
+E
+E
 E           Mismatched elements: 1 / 1 (100%)
 E           Max absolute difference among violations: 1.
 E           Max relative difference among violations: inf
@@ -1273,7 +1273,7 @@ E           Falsifying example: test_two_grad_broadcast(
 E               data=data(...), fn=('add2', add2, add2), backend='fast',
 E           )
 E           Draw 1: [
-E           [0.00 0.00], 
+E           [0.00 0.00],
 E           [0.00 0.00]]
 
 /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/contextlib.py:81: AssertionError
@@ -1285,13 +1285,13 @@ backend = 'fast'
     @given(data())
 >   @settings(max_examples=25)
 
-tests/test_tensor_general.py:309: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_tensor_general.py:309:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 tests/test_tensor_general.py:325: in test_two_grad_broadcast
     grad_check(tensor_fn, t1, t2.sum(0))
 minitorch/tensor_functions.py:878: in grad_check
     np.testing.assert_allclose(
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 args = (<function assert_allclose.<locals>.compare at 0x1111a4ea0>, array(0.18181818), array(0.36363636))
 kwds = {'equal_nan': True, 'err_msg': '\n\nGradient check error for function <function MathTest.div2 at 0x1100344a0>.\n\nInpu... 0.363636 from central difference.\n\n', 'header': 'Not equal to tolerance rtol=0.01, atol=0.01', 'strict': False, ...}
@@ -1300,20 +1300,20 @@ kwds = {'equal_nan': True, 'err_msg': '\n\nGradient check error for function <fu
     def inner(*args, **kwds):
         with self._recreate_cm():
 >           return func(*args, **kwds)
-E           AssertionError: 
+E           AssertionError:
 E           Not equal to tolerance rtol=0.01, atol=0.01
-E           
-E           
+E
+E
 E           Gradient check error for function <function MathTest.div2 at 0x1100344a0>.
-E           
+E
 E           Input (
-E           [0.00 0.00], 
+E           [0.00 0.00],
 E           [0.00])
-E           
+E
 E           Received derivative 0.181818 for argument 0 and index (0,),
 E           but was expecting derivative 0.363636 from central difference.
-E           
-E           
+E
+E
 E           Mismatched elements: 1 / 1 (100%)
 E           Max absolute difference among violations: 0.18181818
 E           Max relative difference among violations: 0.5
@@ -1323,7 +1323,7 @@ E           Falsifying example: test_two_grad_broadcast(
 E               data=data(...), fn=('div2', div2, div2), backend='fast',
 E           )
 E           Draw 1: [
-E           [0.00 0.00], 
+E           [0.00 0.00],
 E           [0.00 0.00]]
 
 /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/contextlib.py:81: AssertionError
@@ -1335,13 +1335,13 @@ backend = 'fast'
     @given(data())
 >   @settings(max_examples=25)
 
-tests/test_tensor_general.py:309: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_tensor_general.py:309:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 tests/test_tensor_general.py:321: in test_two_grad_broadcast
     grad_check(tensor_fn, t1, t2)
 minitorch/tensor_functions.py:878: in grad_check
     np.testing.assert_allclose(
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 args = (<function assert_allclose.<locals>.compare at 0x1111a7740>, array(0.), array(1.))
 kwds = {'equal_nan': True, 'err_msg': '\n\nGradient check error for function <function MathTest.mul2 at 0x110034400>.\n\nInpu... 1.000000 from central difference.\n\n', 'header': 'Not equal to tolerance rtol=0.01, atol=0.01', 'strict': False, ...}
@@ -1350,22 +1350,22 @@ kwds = {'equal_nan': True, 'err_msg': '\n\nGradient check error for function <fu
     def inner(*args, **kwds):
         with self._recreate_cm():
 >           return func(*args, **kwds)
-E           AssertionError: 
+E           AssertionError:
 E           Not equal to tolerance rtol=0.01, atol=0.01
-E           
-E           
+E
+E
 E           Gradient check error for function <function MathTest.mul2 at 0x110034400>.
-E           
+E
 E           Input (
 E           [
-E           	[0.00 0.00]], 
+E           	[0.00 0.00]],
 E           [
 E           	[0.00 1.00]])
-E           
+E
 E           Received derivative 0.000000 for argument 0 and index (0, 1),
 E           but was expecting derivative 1.000000 from central difference.
-E           
-E           
+E
+E
 E           Mismatched elements: 1 / 1 (100%)
 E           Max absolute difference among violations: 1.
 E           Max relative difference among violations: 1.
@@ -1376,7 +1376,7 @@ E               data=data(...), fn=('mul2', mul2, mul2), backend='fast',
 E           )
 E           Draw 1: [
 E           [
-E           	[0.00 0.00]], 
+E           	[0.00 0.00]],
 E           [
 E           	[0.00 1.00]]]
 
@@ -1388,13 +1388,13 @@ backend = 'fast'
     @given(data())
 >   @settings(max_examples=100)
 
-tests/test_tensor_general.py:329: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_tensor_general.py:329:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 tests/test_tensor_general.py:339: in test_permute
     minitorch.grad_check(permute, t1)
 minitorch/tensor_functions.py:878: in grad_check
     np.testing.assert_allclose(
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 args = (<function assert_allclose.<locals>.compare at 0x111e2dd00>, array(1.), array(0.))
 kwds = {'equal_nan': True, 'err_msg': '\n\nGradient check error for function <function test_permute.<locals>.permute at 0x111... 0.000000 from central difference.\n\n', 'header': 'Not equal to tolerance rtol=0.01, atol=0.01', 'strict': False, ...}
@@ -1403,20 +1403,20 @@ kwds = {'equal_nan': True, 'err_msg': '\n\nGradient check error for function <fu
     def inner(*args, **kwds):
         with self._recreate_cm():
 >           return func(*args, **kwds)
-E           AssertionError: 
+E           AssertionError:
 E           Not equal to tolerance rtol=0.01, atol=0.01
-E           
-E           
+E
+E
 E           Gradient check error for function <function test_permute.<locals>.permute at 0x111de7600>.
-E           
+E
 E           Input (
 E           [
 E           	[0.00 0.00]],)
-E           
+E
 E           Received derivative 1.000000 for argument 0 and index (0, 1),
 E           but was expecting derivative 0.000000 from central difference.
-E           
-E           
+E
+E
 E           Mismatched elements: 1 / 1 (100%)
 E           Max absolute difference among violations: 1.
 E           Max relative difference among violations: inf
@@ -1425,7 +1425,7 @@ E            DESIRED: array(0.)
 E           Falsifying example: test_permute(
 E               data=data(...), backend='fast',
 E           )
-E           Draw 1: 
+E           Draw 1:
 E           [
 E           	[0.00 0.00]]
 E           Draw 2: [1, 0]
@@ -1457,14 +1457,14 @@ FAILED tests/test_tensor_general.py::test_one_derivative[fast-fn10] - Asserti...
 FAILED tests/test_tensor_general.py::test_one_derivative[fast-fn11] - Asserti...
 FAILED tests/test_tensor_general.py::test_one_derivative[fast-fn12] - Asserti...
 FAILED tests/test_tensor_general.py::test_one_derivative[fast-fn13] - Asserti...
-FAILED tests/test_tensor_general.py::test_two_grad[fast-fn0] - AssertionError: 
-FAILED tests/test_tensor_general.py::test_two_grad[fast-fn1] - AssertionError: 
-FAILED tests/test_tensor_general.py::test_two_grad[fast-fn5] - AssertionError: 
-FAILED tests/test_tensor_general.py::test_reduce[fast-fn0] - AssertionError: 
-FAILED tests/test_tensor_general.py::test_reduce[fast-fn1] - AssertionError: 
-FAILED tests/test_tensor_general.py::test_reduce[fast-fn2] - AssertionError: 
+FAILED tests/test_tensor_general.py::test_two_grad[fast-fn0] - AssertionError:
+FAILED tests/test_tensor_general.py::test_two_grad[fast-fn1] - AssertionError:
+FAILED tests/test_tensor_general.py::test_two_grad[fast-fn5] - AssertionError:
+FAILED tests/test_tensor_general.py::test_reduce[fast-fn0] - AssertionError:
+FAILED tests/test_tensor_general.py::test_reduce[fast-fn1] - AssertionError:
+FAILED tests/test_tensor_general.py::test_reduce[fast-fn2] - AssertionError:
 FAILED tests/test_tensor_general.py::test_two_grad_broadcast[fast-fn0] - Asse...
 FAILED tests/test_tensor_general.py::test_two_grad_broadcast[fast-fn1] - Asse...
 FAILED tests/test_tensor_general.py::test_two_grad_broadcast[fast-fn5] - Asse...
-FAILED tests/test_tensor_general.py::test_permute[fast] - AssertionError: 
+FAILED tests/test_tensor_general.py::test_permute[fast] - AssertionError:
 ================= 35 failed, 16 passed, 2 deselected in 19.48s =================

@@ -19,7 +19,7 @@ if TYPE_CHECKING:
     from typing import Callable, Optional
 
     from .tensor import Tensor
-    from .tensor_data import Index, Shape, Storage, Strides
+    from .tensor_data import Shape, Storage, Strides
 
 # TIP: Use `NUMBA_DISABLE_JIT=1 pytest tests/ -m task3_1` to run these tests without JIT.
 
@@ -182,7 +182,9 @@ def tensor_map(
                 out_pos = index_to_position(out_index, out_strides)
                 in_pos = index_to_position(in_index, in_strides)
                 out[out_pos] = fn(in_storage[in_pos])
+
     return njit(_map, parallel=True)
+
 
 def tensor_zip(
     fn: Callable[[float, float], float],
@@ -219,7 +221,9 @@ def tensor_zip(
         b_strides: Strides,
     ) -> None:
         # TODO: Implement for Task 3.1.
-        if list(out_shape) == list(a_shape) == list(b_shape) and list(out_strides) == list(a_strides) == list(b_strides):
+        if list(out_shape) == list(a_shape) == list(b_shape) and list(
+            out_strides
+        ) == list(a_strides) == list(b_strides):
             for i in prange(len(out)):
                 out[i] = fn(a_storage[i], b_storage[i])
             return
@@ -236,6 +240,7 @@ def tensor_zip(
                 out[i] = fn(a_storage[a_pos], b_storage[b_pos])
 
     return njit(_zip, parallel=True)
+
 
 def tensor_reduce(
     fn: Callable[[float, float], float],
@@ -283,6 +288,7 @@ def tensor_reduce(
             out[out_pos] = reduce_val
 
     return njit(_reduce, parallel=True)
+
 
 def _tensor_matrix_multiply(
     out: Storage,
@@ -341,7 +347,7 @@ def _tensor_matrix_multiply(
                 # Calculate the position in the output tensor
                 out_pos = n * out_batch_stride + i * out_strides[1] + j * out_strides[2]
                 out[out_pos] = 0  # Initialize to zero for accumulation
-                
+
                 # Accumulate the dot product
                 for k in range(a_shape[2]):  # Shared dimension
                     # Calculate the positions in the input tensors

@@ -98,7 +98,7 @@ def broadcast_index(
 
     """
     # TODO: Implement for Task 2.2.
-    for i, s in enumerate(shape): 
+    for i, s in enumerate(shape):
         if s > 1:
             out_index[i] = big_index[i + (len(big_shape) - len(shape))]
         else:

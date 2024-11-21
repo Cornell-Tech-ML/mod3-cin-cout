@@ -343,7 +343,7 @@ class Sigmoid(ScalarFunction):
 
         """
         sigmoid_value: float = ctx.saved_values[0]
-        return sigmoid_value * (1 - sigmoid_value) * d_output 
+        return sigmoid_value * (1 - sigmoid_value) * d_output
 
 
 class ReLU(ScalarFunction):
@@ -431,7 +431,7 @@ class Exp(ScalarFunction):
             The gradient with respect to a.
 
         """
-        exp_value:float = ctx.saved_values[0]
+        exp_value: float = ctx.saved_values[0]
         return d_output * exp_value
 
 
@@ -501,7 +501,7 @@ class EQ(ScalarFunction):
             1.0 if a == b, 0.0 otherwise.
 
         """
-        return 1.0 if a==b else 0.0
+        return 1.0 if a == b else 0.0
 
     @staticmethod
     def backward(ctx: Context, d_output: float) -> Tuple[float, float]:
