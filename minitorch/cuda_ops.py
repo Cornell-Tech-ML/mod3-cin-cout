@@ -357,7 +357,6 @@ def tensor_reduce(
         pos = cuda.threadIdx.x
 
         # TODO: Implement for Task 3.3.
-        # im still debugging
         a_index = cuda.local.array(MAX_DIMS, numba.int32)
         if out_pos < out_size:
             # compute out_index from out_pos
@@ -458,45 +457,53 @@ def _mm_practice(out: Storage, a: Storage, b: Storage, size: int) -> None:
     a_shared = cuda.shared.array((BLOCK_DIM, BLOCK_DIM), numba.float64)
     b_shared = cuda.shared.array((BLOCK_DIM, BLOCK_DIM), numba.float64)
 
-    # Thread indices (local to the block)
+    # Thread indices within the block (local to the block). 
+    # Each thread works on a specific row and column within the block.
     local_i = cuda.threadIdx.y  # Row within the block
     local_j = cuda.threadIdx.x  # Column within the block
 
-    # Global indices (row and column in the output matrix)
+    # Compute the global indices (row and column) in the output matrix `out` 
+    # corresponding to the current thread in the block.
     i = cuda.blockIdx.x * cuda.blockDim.x + local_i
     j = cuda.blockIdx.y * cuda.blockDim.y + local_j
 
-    # Initialize the accumulator
+    
+    # Initialize an accumulator for the dot product. 
+    # This will store the partial sum of the dot product for this thread's output element.
     acc = 0.0
 
-    # Loop over tiles of size BLOCK_DIM along the shared dimension
+    # Loop over the shared dimension of the matrices (number of columns in A = number of rows in B).
+    # Each thread loads one element of the tile.
+    # The matrices are divided into tiles of size BLOCK_DIM, and the loop processes one tile at a time.
     for k in range(0, size, BLOCK_DIM):
         # Load tiles of A and B into shared memory
         if i < size and (k + local_j) < size:
-            # strides [size, 1]
+            # strides [size, 1] so a[i * size + (k + local_j)] = a[i, local_j]
             a_shared[local_i, local_j] = a[i * size + (k + local_j)]
         else:
             a_shared[local_i, local_j] = 0.0
 
         if j < size and (k + local_i) < size:
-            # strides [size, 1]
+            # strides [size, 1] so b[(k + local_i) * size + j] = b[local_i, j]
             b_shared[local_i, local_j] = b[(k + local_i) * size + j]
         else:
             b_shared[local_i, local_j] = 0.0
 
-        # Synchronize threads to ensure all data is loaded
+        # Synchronize all threads in the block to ensure the tiles are fully loaded into shared memory.
         cuda.syncthreads()
 
-        # Perform the computation for this tile
-        for local_k in range(BLOCK_DIM):
+        # Perform the computation for the current tile.
+        # Each thread computes a partial sum of the dot product for its corresponding output element.
+        for local_k in range(min(size - k, BLOCK_DIM)):
             acc += a_shared[local_i, local_k] * b_shared[local_k, local_j]
 
         # Synchronize threads before loading the next tile
         cuda.syncthreads()
 
     # Write the computed value to global memory
+    # Guard
     if i < size and j < size:
-        # strides [size, 1]
+        # strides [size, 1] so out[i * size + j] = out[i, j]
         out[i * size + j] = acc
 
 
@@ -586,7 +593,7 @@ def _tensor_matrix_multiply(
 
     # By leveraging shared memory to reduce access latency, this approach optimizes memory bandwidth usage
     # and achieves high parallel efficiency, making it well-suited for large-scale matrix operations.
-    
+
     # each thread per block will have its own acc
     acc = 0.0
 
