@@ -358,62 +358,6 @@ plot by google sheet
 #### Split
 ##### CPU
 ```bash
-!cd $DIR; PYTHONPATH=/content/$DIR python3.12 project/run_fast_tensor.py --BACKEND gpu --HIDDEN 100 --DATASET split --RATE 0.05
-```
-```text
-Epoch 0: loss 7.5551, correct 31, time 4.0024 seconds
-Epoch 10: loss 5.3866, correct 35, time 1.5340 seconds
-Epoch 20: loss 5.6178, correct 42, time 1.5334 seconds
-Epoch 30: loss 4.6200, correct 43, time 1.9837 seconds
-Epoch 40: loss 3.8444, correct 37, time 1.5399 seconds
-Epoch 50: loss 4.0794, correct 45, time 1.5533 seconds
-Epoch 60: loss 2.1984, correct 45, time 1.8597 seconds
-Epoch 70: loss 3.3678, correct 46, time 1.5869 seconds
-Epoch 80: loss 2.2343, correct 48, time 1.5439 seconds
-Epoch 90: loss 3.7301, correct 46, time 1.6018 seconds
-Epoch 100: loss 2.4227, correct 49, time 1.6133 seconds
-Epoch 110: loss 2.4523, correct 48, time 2.0971 seconds
-Epoch 120: loss 0.9952, correct 48, time 1.5379 seconds
-Epoch 130: loss 2.0921, correct 49, time 1.5458 seconds
-Epoch 140: loss 2.9144, correct 49, time 1.5973 seconds
-Epoch 150: loss 1.1494, correct 49, time 1.5266 seconds
-Epoch 160: loss 0.5875, correct 49, time 1.7492 seconds
-Epoch 170: loss 1.6886, correct 50, time 1.5373 seconds
-Epoch 180: loss 1.5263, correct 48, time 1.5412 seconds
-Epoch 190: loss 1.6527, correct 48, time 2.2424 seconds
-Epoch 200: loss 1.1253, correct 49, time 1.5359 seconds
-Epoch 210: loss 0.4759, correct 49, time 1.5321 seconds
-Epoch 220: loss 2.3503, correct 49, time 1.6116 seconds
-Epoch 230: loss 1.0941, correct 49, time 1.5906 seconds
-Epoch 240: loss 1.6934, correct 49, time 1.5323 seconds
-Epoch 250: loss 0.9679, correct 49, time 1.6007 seconds
-Epoch 260: loss 2.1667, correct 49, time 1.5543 seconds
-Epoch 270: loss 0.4508, correct 49, time 2.1147 seconds
-Epoch 280: loss 0.4729, correct 49, time 2.0886 seconds
-Epoch 290: loss 2.4171, correct 49, time 1.5399 seconds
-Epoch 300: loss 1.7243, correct 49, time 1.5334 seconds
-Epoch 310: loss 0.2182, correct 50, time 1.5724 seconds
-Epoch 320: loss 1.0518, correct 49, time 1.7097 seconds
-Epoch 330: loss 0.7752, correct 49, time 1.5236 seconds
-Epoch 340: loss 0.7625, correct 49, time 1.5702 seconds
-Epoch 350: loss 1.2757, correct 49, time 2.1463 seconds
-Epoch 360: loss 0.2715, correct 49, time 1.5230 seconds
-Epoch 370: loss 0.3678, correct 49, time 1.5243 seconds
-Epoch 380: loss 0.5980, correct 49, time 1.9063 seconds
-Epoch 390: loss 0.9973, correct 48, time 1.6006 seconds
-Epoch 400: loss 0.0579, correct 49, time 1.5267 seconds
-Epoch 410: loss 2.2769, correct 49, time 1.5981 seconds
-Epoch 420: loss 1.1255, correct 49, time 1.5380 seconds
-Epoch 430: loss 0.1783, correct 49, time 1.6709 seconds
-Epoch 440: loss 0.4582, correct 49, time 1.5312 seconds
-Epoch 450: loss 1.4430, correct 49, time 1.5811 seconds
-Epoch 460: loss 2.0488, correct 49, time 2.6142 seconds
-Epoch 470: loss 0.9431, correct 49, time 1.6620 seconds
-Epoch 480: loss 0.2549, correct 49, time 2.2684 seconds
-Epoch 490: loss 1.6463, correct 49, time 1.5325 seconds
-```
-##### GPU
-```bash
 !cd $DIR; PYTHONPATH=/content/$DIR python3.12 project/run_fast_tensor.py --BACKEND cpu --HIDDEN 100 --DATASET split --RATE 0.05
 ```
 ```text
@@ -468,7 +412,62 @@ Epoch 470: loss 0.0931, correct 50, time 0.1057 seconds
 Epoch 480: loss 0.0475, correct 50, time 0.1085 seconds
 Epoch 490: loss 0.0440, correct 50, time 0.1072 seconds
 ```
-
+##### GPU
+```bash
+!cd $DIR; PYTHONPATH=/content/$DIR python3.12 project/run_fast_tensor.py --BACKEND gpu --HIDDEN 100 --DATASET split --RATE 0.05
+```
+```text
+Epoch 0: loss 7.5551, correct 31, time 4.0024 seconds
+Epoch 10: loss 5.3866, correct 35, time 1.5340 seconds
+Epoch 20: loss 5.6178, correct 42, time 1.5334 seconds
+Epoch 30: loss 4.6200, correct 43, time 1.9837 seconds
+Epoch 40: loss 3.8444, correct 37, time 1.5399 seconds
+Epoch 50: loss 4.0794, correct 45, time 1.5533 seconds
+Epoch 60: loss 2.1984, correct 45, time 1.8597 seconds
+Epoch 70: loss 3.3678, correct 46, time 1.5869 seconds
+Epoch 80: loss 2.2343, correct 48, time 1.5439 seconds
+Epoch 90: loss 3.7301, correct 46, time 1.6018 seconds
+Epoch 100: loss 2.4227, correct 49, time 1.6133 seconds
+Epoch 110: loss 2.4523, correct 48, time 2.0971 seconds
+Epoch 120: loss 0.9952, correct 48, time 1.5379 seconds
+Epoch 130: loss 2.0921, correct 49, time 1.5458 seconds
+Epoch 140: loss 2.9144, correct 49, time 1.5973 seconds
+Epoch 150: loss 1.1494, correct 49, time 1.5266 seconds
+Epoch 160: loss 0.5875, correct 49, time 1.7492 seconds
+Epoch 170: loss 1.6886, correct 50, time 1.5373 seconds
+Epoch 180: loss 1.5263, correct 48, time 1.5412 seconds
+Epoch 190: loss 1.6527, correct 48, time 2.2424 seconds
+Epoch 200: loss 1.1253, correct 49, time 1.5359 seconds
+Epoch 210: loss 0.4759, correct 49, time 1.5321 seconds
+Epoch 220: loss 2.3503, correct 49, time 1.6116 seconds
+Epoch 230: loss 1.0941, correct 49, time 1.5906 seconds
+Epoch 240: loss 1.6934, correct 49, time 1.5323 seconds
+Epoch 250: loss 0.9679, correct 49, time 1.6007 seconds
+Epoch 260: loss 2.1667, correct 49, time 1.5543 seconds
+Epoch 270: loss 0.4508, correct 49, time 2.1147 seconds
+Epoch 280: loss 0.4729, correct 49, time 2.0886 seconds
+Epoch 290: loss 2.4171, correct 49, time 1.5399 seconds
+Epoch 300: loss 1.7243, correct 49, time 1.5334 seconds
+Epoch 310: loss 0.2182, correct 50, time 1.5724 seconds
+Epoch 320: loss 1.0518, correct 49, time 1.7097 seconds
+Epoch 330: loss 0.7752, correct 49, time 1.5236 seconds
+Epoch 340: loss 0.7625, correct 49, time 1.5702 seconds
+Epoch 350: loss 1.2757, correct 49, time 2.1463 seconds
+Epoch 360: loss 0.2715, correct 49, time 1.5230 seconds
+Epoch 370: loss 0.3678, correct 49, time 1.5243 seconds
+Epoch 380: loss 0.5980, correct 49, time 1.9063 seconds
+Epoch 390: loss 0.9973, correct 48, time 1.6006 seconds
+Epoch 400: loss 0.0579, correct 49, time 1.5267 seconds
+Epoch 410: loss 2.2769, correct 49, time 1.5981 seconds
+Epoch 420: loss 1.1255, correct 49, time 1.5380 seconds
+Epoch 430: loss 0.1783, correct 49, time 1.6709 seconds
+Epoch 440: loss 0.4582, correct 49, time 1.5312 seconds
+Epoch 450: loss 1.4430, correct 49, time 1.5811 seconds
+Epoch 460: loss 2.0488, correct 49, time 2.6142 seconds
+Epoch 470: loss 0.9431, correct 49, time 1.6620 seconds
+Epoch 480: loss 0.2549, correct 49, time 2.2684 seconds
+Epoch 490: loss 1.6463, correct 49, time 1.5325 seconds
+```
 #### Simple
 ##### CPU
 ```bash
